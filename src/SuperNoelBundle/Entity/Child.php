@@ -107,6 +107,12 @@ class Child
 
 
     /**
+     * @ORM\OneToMany(targetEntity="Gift", mappedBy="child")
+     */
+    private $gifts;
+
+
+    /**
      * Get id
      *
      * @return int
@@ -402,5 +408,46 @@ class Child
     public function getDelivered()
     {
         return $this->delivered;
+    }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->gifts = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add gift
+     *
+     * @param \SuperNoelBundle\Entity\Gift $gift
+     *
+     * @return Child
+     */
+    public function addGift(\SuperNoelBundle\Entity\Gift $gift)
+    {
+        $this->gifts[] = $gift;
+
+        return $this;
+    }
+
+    /**
+     * Remove gift
+     *
+     * @param \SuperNoelBundle\Entity\Gift $gift
+     */
+    public function removeGift(\SuperNoelBundle\Entity\Gift $gift)
+    {
+        $this->gifts->removeElement($gift);
+    }
+
+    /**
+     * Get gifts
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getGifts()
+    {
+        return $this->gifts;
     }
 }
