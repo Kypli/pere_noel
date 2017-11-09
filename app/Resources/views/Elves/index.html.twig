@@ -1,10 +1,14 @@
 {% extends 'base.html.twig' %}
-{#{% block header %}#}
-    {#<h1>Prénom de l'enfant - Nom de l'enfant</h1>#}
+{% block header %}
+    <h1>{% if childs!= null %} {{ child.firstname }} {% endif %}- Nom de l'enfant</h1>
 
-{#{% endblock %}#}
+{% endblock %}
  {% block body %}
-     <h1>Nom du cadeau</h1>
+     <h1>{% if gifts != null %}
+{{ gifts.name }}
+{% else %}
+    Vide
+{% endif %}</h1>
      <div class="form-group">
          <label for="catégorie">Catégorie</label>
          <select name="catégorie" id="catégorie" class="form-control">
@@ -40,3 +44,6 @@
 
      </div>
  {% endblock %}
+
+
+
