@@ -20,24 +20,28 @@ class ElvesHomeController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         // Récupérer les cadeaux non traité
-        $gifts = $em->getRepository('SuperNoelBundle:Gift')->findByTreated(0);
+        $gifts = $em->getRepository('SuperNoelBundle:Gift')
+            ->findBy(['treated' => false], ['id'=>'ASC'], 1, 0);
 
         // S'il retourne un résultat
         if (!empty($gifts)) {
-            $child = $gifts[0]->getChild();
-//            var_dump($child);
+
+            // Récupérer Id de l'enfant
+            $idChild = $gifts[0]->getChild()->getId();
+
             // Récupérer liste des cadeaux de l'enfant en cours
-            $whistlist = $em->getRepository('SuperNoelBundle:Gift')->findByChild($child);
+            $whistlist = $em->getRepository('SuperNoelBundle:Gift')
+                ->findBy(['child' => $idChild], ['feasibility'=>'DESC'], null, 0);
+
         // S'il retourne un résultat vide
         } else {
             $gifts = null;
             $whistlist = null;
         }
 
-//        var_dump($gifts[0]);
-//        var_dump($whistlist);
-        return $this->render('SuperNoelBundle:Elves:index.html.twig',  [
-            'gift' => $gifts[0],
+        var_dump($gifts);
+        return $this->render('Elves/index.html.twig',  [
+            'gifts' => $gifts[0],
             'whistlist' => $whistlist,
         ]);
     }
