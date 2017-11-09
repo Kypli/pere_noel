@@ -1,7 +1,11 @@
 {
-    "name": "wilder11/supernoel",
-    "license": "proprietary",
-    "type": "project",
+    "name": "wilder14/pere_noel",
+    "authors": [
+        {
+            "name": "olivorel",
+            "email": "olivorel45@hotmail.fr"
+        }
+    ],
     "autoload": {
         "psr-4": {
             "AppBundle\\": "src/AppBundle"
@@ -33,6 +37,7 @@
         "twig/twig": "^1.0||^2.0"
     },
     "require-dev": {
+        "doctrine/doctrine-fixtures-bundle": "^2.4",
         "sensio/generator-bundle": "^3.0",
         "symfony/phpunit-bridge": "^3.0"
     },
