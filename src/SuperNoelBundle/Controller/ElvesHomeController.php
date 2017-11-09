@@ -108,7 +108,6 @@ class ElvesHomeController extends Controller
         }
 
         if (!empty($_POST['newCategory'])) {
-            var_dump($_POST['newCategory']);
             $category = new Category();
             $category->setName($_POST['newCategory']);
             $em->persist($category);
