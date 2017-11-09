@@ -1,0 +1,131 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="row namechild" xmlns="http://www.w3.org/1999/html">
+        <div class="col-md-offset-6 col-md-6">
+            <h1>{{ gift.child.firstname }} - {{ gift.child.lastname }} </h1>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <h1>Nom du cadeau:
+
+                    {% if gift != null %}
+                        {{ gift.name }}
+                    {% else %}
+                        Vide
+                    {% endif %}
+
+                </h1>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="category">Catégorie</label>
+                    <select name="category" id="category" class="form-control">
+
+                        {% for category in categories %}
+
+                            <option value="{{ category.id }}"> {{ category.name }}</option>
+
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="buttonsubmit1">
+                    <button type="submit" name="newcategory" class="btn btn-primary">Ajouter la catégorie</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <hr>
+
+    <section class="faisability">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 cadeaux">
+                    <div class="panel panel-default">
+                        <div class="panel-heading"><h1>Liste des cadeaux</h1></div>
+                        <div class="panel-body">
+                            {% for wishlist in wishlist %}
+                                <ol>
+                                    <li>{{ gift.name }} - {{ gift.feasibility }} %
+                                    </li>
+                                </ol>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-8 faisability">
+                    <form method="post" action="" id="">
+                        <div class="panel panel-default">
+                            <div class="panel-heading"><h1> Faisabilité</h1>
+
+                            </div>
+                            <div class="panel-body">
+                                <table classe="table">
+                                    <tr>
+                                        <th>Sage</th>
+                                        <th>Réalisable</th>
+                                    </tr>
+                                    <tr>
+                                        <div class="form-group">
+                                            <td>
+                                                <INPUT type="radio" name="wisdom" value="1">peu sage
+                                                <INPUT type="radio" name="wisdom" value="2"> assez sage
+                                                <INPUT type="radio" name="wisdom" value="3">sage
+                                                <INPUT type="radio" name="wisdom" value="4">très sage
+                                                <INPUT type="radio" name="wisdom" value="5">Super sage
+                                            </td>
+                                            <td>
+                                                <input type="checkbox" name="feasible" value="feasible">
+                                                <label for="feasible">Oui</label>
+                                                <input type="checkbox" name="notfeasible" value="notfeasible">
+                                                <label for="notfeasible">Non</label>
+                                            </td>
+                                        </div>
+                                    </tr>
+                                    <tr>
+                                        <th>Note instinctive</th>
+                                        <th>Résultat</th>
+                                    </tr>
+                                    <tr>
+                                        <div class="form-group">
+                                            <td><input type="range" min="-100" max="100" value="0" step="2" name="power" list="powers">
+                                                <datalist id="powers">
+                                                    <option value="0">
+                                                    <option value="5">
+                                                    <option value="10">
+                                                    <option value="15">
+                                                    <option value="20">
+                                                    <option value="25">
+                                                </datalist>
+                                            </td>
+                                        </div>
+                                        <td>
+                                            Pourcentage javascript
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-offset-6 col-md-6">
+                                <div class="buttonsubmit2">
+                                    <input name="validation" type="hidden" value="">
+                                    <input type="submit" value="Valider"/>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}
+
+
