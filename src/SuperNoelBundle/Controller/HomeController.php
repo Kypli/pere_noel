@@ -17,11 +17,10 @@ class HomeController extends Controller
      */
     public function indexAction() {
 
+
         $child = new Child();    //On crée un objet Child
         $form = $this->createForm(childsFormType::class, $child); //On crée le FormBuilder
-
-
-// createView() permet à la vue d’afficher le formulaire
+        // CreateView() permet à la vue d’afficher le formulaire
         return $this->render('Home/home.html.twig', array(
             'form' => $form->createView(),
         ));

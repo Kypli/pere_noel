@@ -44,12 +44,12 @@ class Gift
 
 
     /**
-     * @ORM\OneToOne(targetEntity="SuperNoelBundle\Entity\Category")
+     * @ORM\ManyToOne(targetEntity="Category")
      */
     private $category;
 
     /**
-     * @ORM\ManyToOne(targetEntity="SuperNoelBundle\Entity\Child")
+     * @ORM\ManyToOne(targetEntity="Child", inversedBy="gifts")
      */
     private $child;
 
@@ -181,5 +181,36 @@ class Gift
     public function getChild()
     {
         return $this->child;
+    }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->category = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add category
+     *
+     * @param \SuperNoelBundle\Entity\Category $category
+     *
+     * @return Gift
+     */
+    public function addCategory(\SuperNoelBundle\Entity\Category $category)
+    {
+        $this->category[] = $category;
+
+        return $this;
+    }
+
+    /**
+     * Remove category
+     *
+     * @param \SuperNoelBundle\Entity\Category $category
+     */
+    public function removeCategory(\SuperNoelBundle\Entity\Category $category)
+    {
+        $this->category->removeElement($category);
     }
 }

@@ -3,6 +3,7 @@
 namespace SuperNoelBundle\Controller;
 
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use SuperNoelBundle\Entity\Category;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 /**
@@ -11,6 +12,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
  */
 class ElvesHomeController extends Controller
 {
+    const Malus = 4;
+
     /**
      * @Route("/")
      */
@@ -20,25 +23,97 @@ class ElvesHomeController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         // Récupérer les cadeaux non traité
-        $gifts = $em->getRepository('SuperNoelBundle:Gift')->findByTreated(0);
+        $gifts = $em->getRepository('SuperNoelBundle:Gift')
+            ->findBy(['treated' => false], ['id'=>'ASC'], 1, 0);
 
         // S'il retourne un résultat
         if (!empty($gifts)) {
-            $child = $gifts[0]->getChild();
-//            var_dump($child);
+
+            // Récupérer Id de l'enfant
+            $idChild = $gifts[0]->getChild()->getId();
+
             // Récupérer liste des cadeaux de l'enfant en cours
-            $whistlist = $em->getRepository('SuperNoelBundle:Gift')->findByChild($child);
+            $wishlist = $em->getRepository('SuperNoelBundle:Gift')
+                ->findBy(['child' => $idChild], ['feasibility'=>'DESC'], null, 0);
+
+            // Rajouter Malus
+            $malus = 0;
+            foreach ($wishlist as $whish) {
+                $whish->setFeasibility($whish->getFeasibility() - $malus);
+                $malus += self::Malus;
+            }
+
+            // Récupérer les catégories
+            $categories = $em->getRepository('SuperNoelBundle:Category')->findAll();
+
         // S'il retourne un résultat vide
         } else {
             $gifts = null;
-            $whistlist = null;
+            $wishlist = null;
         }
 
-//        var_dump($gifts[0]);
-//        var_dump($whistlist);
-        return $this->render('SuperNoelBundle:Elves:index.html.twig',  [
+        return $this->render('Elves/index.html.twig',  [
             'gift' => $gifts[0],
-            'whistlist' => $whistlist,
+            'wishlist' => $wishlist,
+            'categories' => $categories,
         ]);
     }
+
+    /**
+     * @Route("/traitement")
+     */
+    public function giftTreatementAction()
+    {
+        // Connection Manager
+        $em = $this->getDoctrine()->getManager();
+
+        if (empty($_POST['id'])) {
+
+            // Récupérer l'objet Gift en cours de traitement
+            $gift = $em->getRepository('SuperNoelBundle:Gift')
+                ->findOneById($_POST['id']);
+
+            // Faisabilité
+            $feasibility = $_POST['notation'] + (5 * $gift->getChild()->getWise());
+            if ($_POST['feasible'] == true){
+                $feasibility += 50;
+            }
+
+            // Modif cadeau en cours
+//            $gift->setCategory($_POST['category']); // Blocage BDD
+            $gift->setFeasibility($feasibility);
+            $gift->setTreated(true);
+
+            // Activation du Malus si dernier cadeau de la liste de l'enfants
+            $wishlist = $em->getRepository('SuperNoelBundle:Gift')
+                ->findBy(['child' => $gift->getChild()->getId(), 'treated' => false]);
+
+            if (empty($wishlist)) {
+
+                $wishlist = $em->getRepository('SuperNoelBundle:Gift')
+                    ->findBy(['child' => $gift->getChild()->getId()]);
+
+                $malus = 0;
+                foreach ($wishlist as $whish) {
+                    $whish->setFeasibility($whish->getFeasibility() - $malus);
+                    $malus += self::Malus;
+                }
+
+            }
+
+            // Fin
+            $em->flush();
+        }
+
+        if (!empty($_POST['newCategory'])) {
+            $category = new Category();
+            $category->setName($_POST['newCategory']);
+            $em->persist($category);
+            $em->flush();
+        }
+
+//        return $this->redirectToRoute('homepage');
+        return $this->render('Elves/index.html.twig');
+    }
 }
+
