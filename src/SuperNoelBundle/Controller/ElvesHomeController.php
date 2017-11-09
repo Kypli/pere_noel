@@ -16,6 +16,6 @@ class ElvesHomeController extends Controller
      */
     public function indexAction()
     {
-        return $this->render('SuperNoelBundle:Elves:index.html.twig');
+        return $this->render('SuperNoelBundle:Elves:home.html.twig');
     }
 }
