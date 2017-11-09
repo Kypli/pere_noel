@@ -69,13 +69,6 @@ class ElvesHomeController extends Controller
 
         if (empty($_POST['id'])) {
 
-            // A supprimer
-            $_POST['id'] = 3;
-            $_POST['notation'] = 20;
-            $_POST['category'] = 'peluche';
-            $_POST['feasible'] = true;
-            ////////////
-
             // Récupérer l'objet Gift en cours de traitement
             $gift = $em->getRepository('SuperNoelBundle:Gift')
                 ->findOneById($_POST['id']);
@@ -112,7 +105,6 @@ class ElvesHomeController extends Controller
             $em->flush();
         }
 
-        $_POST['newCategory'] = "couette";
         if (!empty($_POST['newCategory'])) {
             $category = new Category();
             $category->setName($_POST['newCategory']);
