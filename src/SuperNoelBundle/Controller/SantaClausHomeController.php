@@ -18,4 +18,9 @@ class SantaClausHomeController extends Controller
     {
         return $this->render('SantaClaus/index.html.twig');
     }
+
+    public function viewChildAction()
+    {
+        return $this->render('SuperNoelBundle:SantaClaus:viewChild.html.twig');
+    }
 }

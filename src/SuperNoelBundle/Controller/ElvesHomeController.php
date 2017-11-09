@@ -33,16 +33,37 @@ class ElvesHomeController extends Controller
             $whistlist = $em->getRepository('SuperNoelBundle:Gift')
                 ->findBy(['child' => $idChild], ['feasibility'=>'DESC'], null, 0);
 
+            // Récupérer les catégories
+            $categories = $em->getRepository('SuperNoelBundle:Category')->findAll();
+
         // S'il retourne un résultat vide
         } else {
             $gifts = null;
             $whistlist = null;
         }
 
-        var_dump($gifts);
         return $this->render('Elves/index.html.twig',  [
-            'gifts' => $gifts[0],
+            'gift' => $gifts[0],
             'whistlist' => $whistlist,
+            'categories' => $categories,
         ]);
     }
+
+    /**
+     * @Route("/giftTreatement")
+     */
+    public function giftTreatementAction()
+    {
+        // Connection Manager
+        $em = $this->getDoctrine()->getManager();
+
+        if (!empty($_POST['gift'])) {
+            $id = $_POST['id'];
+            $notation = $_POST['notation'];
+            $notation = $_POST['notation'];
+        }
+
+        header('Elves/index.html.twig');
+    }
 }
+
