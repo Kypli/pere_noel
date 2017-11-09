@@ -107,6 +107,12 @@ class Child
 
 
     /**
+     * @ORM\OneToMany(targetEntity="Gift", mappedBy="child")
+     */
+    private $gifts;
+
+
+    /**
      * Get id
      *
      * @return int
