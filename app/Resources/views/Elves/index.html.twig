@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+{% block header %}
+    <h1>{{ child.lastname }} - {{ child.firstname }}
+    </h1>
+
+{% endblock %}
+ {% block content %}
+     <h1>{{ gift.name }} </h1>
+     <div class="form-group">
+         <label for="catégorie">Catégorie</label>
+         <select name="catégorie" id="catégorie" class="form-control">
+             {% for category in categories %}
+                 <option value="{{ category.id }}" {{ gift.category_id == category.id ? 'selected' }}>{{ category.name }}</option>
+             {% endfor %}
+         </select>
+     </div>
+
+
+
+ {% endblock %}
