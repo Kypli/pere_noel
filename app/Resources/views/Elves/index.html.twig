@@ -1,18 +1,22 @@
-{% extends 'base.html.twig' %}
-{% block header %}
-    <h1>{% if childs!= null %} {{ child.firstname }} {% endif %}- Nom de l'enfant</h1>
+{#{% extends 'base.html.twig' %}#}
+{#{% block header %}#}
+    <h1>a -{{ gift.child.firstname }} -  {{ gift.child.lastname }} </h1>
 
-{% endblock %}
+{#{% endblock %}#}
  {% block body %}
-     <h1>{% if gifts != null %}
-{{ gifts.name }}
+     <h1>{% if gift != null %}
+{{ gift.name }}
 {% else %}
     Vide
 {% endif %}</h1>
      <div class="form-group">
          <label for="catégorie">Catégorie</label>
          <select name="catégorie" id="catégorie" class="form-control">
-
+             {#{% for category in categories %}#}
+                 {#<li>#}
+                     {#{{ category.id }} : {{ category.name }}#}
+                 {#</li>#}
+             {#{% endfor %}#}
          </select>
      </div>
      <div class="buttonsubmit">
@@ -23,19 +27,11 @@
 <section class="faisability">
     <h1>Faisabilité</h1>
          <div class="Liste des cadeaux">
+
              <ol>
-                 <li>Nom du cadeau - pourcentage %
+                 <li>{{ gift.name }} - {{ gift.feasibility }} %
                  </li>
-                 <li>Nom du cadeau - pourcentage %
-                 </li>
-                 <li>Nom du cadeau - pourcentage %
-                 </li>
-                 <li>Nom du cadeau - pourcentage %
-                 </li>
-                 <li>Nom du cadeau - pourcentage %
-                 </li>
-                 <li>Nom du cadeau - pourcentage %
-                 </li>
+
              </ol>
          </div>
 
