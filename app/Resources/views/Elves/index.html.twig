@@ -1,6 +1,6 @@
 {#{% extends 'base.html.twig' %}#}
 {#{% block header %}#}
-    <h1>a -{{ gift.child.firstname }} -  {{ gift.child.lastname }} </h1>
+    <h1>{{ gift.child.firstname }} -  {{ gift.child.lastname }} </h1>
 
 {#{% endblock %}#}
  {% block body %}
@@ -12,11 +12,12 @@
      <div class="form-group">
          <label for="catégorie">Catégorie</label>
          <select name="catégorie" id="catégorie" class="form-control">
-             {#{% for category in categories %}#}
-                 {#<li>#}
-                     {#{{ category.id }} : {{ category.name }}#}
-                 {#</li>#}
-             {#{% endfor %}#}
+
+             {% for category in categories %}
+
+                     <option value="category"> {{ category.id }} : {{ category.name }}</option>
+
+             {% endfor %}
          </select>
      </div>
      <div class="buttonsubmit">
@@ -27,12 +28,12 @@
 <section class="faisability">
     <h1>Faisabilité</h1>
          <div class="Liste des cadeaux">
-
+             {% for gift in gifts %}
              <ol>
                  <li>{{ gift.name }} - {{ gift.feasibility }} %
                  </li>
-
              </ol>
+             {% endfor %}
          </div>
 
 </section>
