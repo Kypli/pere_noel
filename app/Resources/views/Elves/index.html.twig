@@ -1,20 +1,42 @@
 {% extends 'base.html.twig' %}
-{% block header %}
-    <h1>{{ child.lastname }} - {{ child.firstname }}
-    </h1>
+{#{% block header %}#}
+    {#<h1>Prénom de l'enfant - Nom de l'enfant</h1>#}
 
-{% endblock %}
- {% block content %}
-     <h1>{{ gift.name }} </h1>
+{#{% endblock %}#}
+ {% block body %}
+     <h1>Nom du cadeau</h1>
      <div class="form-group">
          <label for="catégorie">Catégorie</label>
          <select name="catégorie" id="catégorie" class="form-control">
-             {% for category in categories %}
-                 <option value="{{ category.id }}" {{ gift.category_id == category.id ? 'selected' }}>{{ category.name }}</option>
-             {% endfor %}
+
          </select>
      </div>
+     <div class="buttonsubmit">
+     <button type="submit" class="btn btn-primary">Submit</button>
+     </div>
+     <hr>
+
+<section class="faisability">
+    <h1>Faisabilité</h1>
+         <div class="Liste des cadeaux">
+             <ol>
+                 <li>Nom du cadeau - pourcentage %
+                 </li>
+                 <li>Nom du cadeau - pourcentage %
+                 </li>
+                 <li>Nom du cadeau - pourcentage %
+                 </li>
+                 <li>Nom du cadeau - pourcentage %
+                 </li>
+                 <li>Nom du cadeau - pourcentage %
+                 </li>
+                 <li>Nom du cadeau - pourcentage %
+                 </li>
+             </ol>
+         </div>
+
+</section>
 
 
-
+     </div>
  {% endblock %}
