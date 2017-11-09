@@ -49,7 +49,7 @@ class Gift
     private $category;
 
     /**
-     * @ORM\ManyToOne(targetEntity="SuperNoelBundle\Entity\Child")
+     * @ORM\ManyToOne(targetEntity="Child", inversedBy="gifts")
      */
     private $child;
 
