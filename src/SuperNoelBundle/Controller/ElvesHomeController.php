@@ -45,11 +45,13 @@ class ElvesHomeController extends Controller
 
             // Récupérer les catégories
             $categories = $em->getRepository('SuperNoelBundle:Category')->findAll();
+            var_dump($categories);
 
         // S'il retourne un résultat vide
         } else {
             $gifts = null;
             $wishlist = null;
+            $categories = null;
         }
 
         return $this->render('Elves/index.html.twig',  [
