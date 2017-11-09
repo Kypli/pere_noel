@@ -45,7 +45,6 @@ class ElvesHomeController extends Controller
 
             // Récupérer les catégories
             $categories = $em->getRepository('SuperNoelBundle:Category')->findAll();
-            var_dump($categories);
 
         // S'il retourne un résultat vide
         } else {
@@ -66,6 +65,7 @@ class ElvesHomeController extends Controller
      */
     public function giftTreatementAction()
     {
+
         // Connection Manager
         $em = $this->getDoctrine()->getManager();
 
@@ -108,6 +108,7 @@ class ElvesHomeController extends Controller
         }
 
         if (!empty($_POST['newCategory'])) {
+            var_dump($_POST['newCategory']);
             $category = new Category();
             $category->setName($_POST['newCategory']);
             $em->persist($category);
