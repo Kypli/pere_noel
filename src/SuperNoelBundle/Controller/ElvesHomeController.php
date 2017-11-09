@@ -67,7 +67,7 @@ class ElvesHomeController extends Controller
         // Connection Manager
         $em = $this->getDoctrine()->getManager();
 
-        if (empty($_POST['id'])) {
+        if (!empty($_POST['id'])) {
 
             // Récupérer l'objet Gift en cours de traitement
             $gift = $em->getRepository('SuperNoelBundle:Gift')
@@ -112,8 +112,8 @@ class ElvesHomeController extends Controller
             $em->flush();
         }
 
-//        return $this->redirectToRoute('homepage');
-        return $this->render('Elves/index.html.twig');
+        return $this->redirectToRoute('homepage');
+
     }
 }
 
