@@ -10,4 +10,10 @@ namespace SuperNoelBundle\Repository;
  */
 class GiftRepository extends \Doctrine\ORM\EntityRepository
 {
+//    public function getUntreated()
+//    {
+//        // Exemple
+//        $persister = $this->_em->getUnitOfWork()->getEntityPersister($this->_entityName);
+//        return $persister->loadAll($criteria, $orderBy, $limit, $offset);
+//    }
 }

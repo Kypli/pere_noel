@@ -14,7 +14,7 @@ class SantaClausHomeController extends Controller
     /**
      * @Route("/")
      */
-    public function indexAction()
+    public function santaClausAction()
     {
         return $this->render('SantaClaus/index.html.twig');
     }
