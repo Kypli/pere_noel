@@ -16,10 +16,10 @@ class HomeController extends Controller
      */
     public function indexAction() {
 
-        $child = new Child();    //On crée un objet Child
-        $formBuilder = $this->createFormBuilder($child); //On crée le FormBuilder
+        $child = new Child();    // On crée un objet Child
+        $formBuilder = $this->createFormBuilder($child); // On crée le FormBuilder
 
-//On ajoute les champs de l'entité Child que l'on veut à notre formulaire
+        // On ajoute les champs de l'entité Child que l'on veut à notre formulaire
         $formBuilder
             ->add('firstname',         TextType::class)
             ->add('lastname',    TextType::class)
@@ -34,10 +34,10 @@ class HomeController extends Controller
             ->add('save',         SubmitType::class)
         ;
 
-// À partir du formBuilder, on génère le formulaire
+        // À partir du formBuilder, on génère le formulaire
         $form = $formBuilder->getForm();
 
-// createView() permet à la vue d’afficher le formulaire
+        // CreateView() permet à la vue d’afficher le formulaire
         return $this->render('Home/home.html.twig', array(
             'form' => $form->createView(),
         ));
