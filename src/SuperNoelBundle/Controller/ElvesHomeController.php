@@ -11,6 +11,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
  */
 class ElvesHomeController extends Controller
 {
+    const Malus = 4;
+
     /**
      * @Route("/")
      */
@@ -30,8 +32,15 @@ class ElvesHomeController extends Controller
             $idChild = $gifts[0]->getChild()->getId();
 
             // Récupérer liste des cadeaux de l'enfant en cours
-            $whistlist = $em->getRepository('SuperNoelBundle:Gift')
+            $wishlist = $em->getRepository('SuperNoelBundle:Gift')
                 ->findBy(['child' => $idChild], ['feasibility'=>'DESC'], null, 0);
+
+            // Rajouter Malus 4%
+            $malus = 0;
+            foreach ($wishlist as $whish) {
+                $whish->setFeasibility($whish->getFeasibility() - $malus);
+                $malus += self::Malus;
+            }
 
             // Récupérer les catégories
             $categories = $em->getRepository('SuperNoelBundle:Category')->findAll();
@@ -39,12 +48,12 @@ class ElvesHomeController extends Controller
         // S'il retourne un résultat vide
         } else {
             $gifts = null;
-            $whistlist = null;
+            $wishlist = null;
         }
 
         return $this->render('Elves/index.html.twig',  [
             'gift' => $gifts[0],
-            'whistlist' => $whistlist,
+            'wishlist' => $wishlist,
             'categories' => $categories,
         ]);
     }
@@ -60,7 +69,11 @@ class ElvesHomeController extends Controller
         if (!empty($_POST['gift'])) {
             $id = $_POST['id'];
             $notation = $_POST['notation'];
-            $notation = $_POST['notation'];
+            $feasible = $_POST['feasible'];
+            $category = $_POST['category'];
+
+            // Faisabilité
+
         }
 
         header('Elves/index.html.twig');
