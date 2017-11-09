@@ -38,7 +38,7 @@ class HomeController extends Controller
         $form = $formBuilder->getForm();
 
 // createView() permet à la vue d’afficher le formulaire
-        return $this->render('SuperNoelBundle:Home:home.html.twig', array(
+        return $this->render('Home/home.html.twig', array(
             'form' => $form->createView(),
         ));
     }

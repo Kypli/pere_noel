@@ -16,6 +16,6 @@ class SantaClausHomeController extends Controller
      */
     public function indexAction()
     {
-        return $this->render('SuperNoelBundle:SantaClaus:home.html.twig');
+        return $this->render('SantaClaus/index.html.twig');
     }
 }
