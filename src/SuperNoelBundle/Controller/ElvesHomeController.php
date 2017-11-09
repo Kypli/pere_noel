@@ -3,6 +3,7 @@
 namespace SuperNoelBundle\Controller;
 
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use SuperNoelBundle\Entity\Category;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 /**
@@ -35,7 +36,7 @@ class ElvesHomeController extends Controller
             $wishlist = $em->getRepository('SuperNoelBundle:Gift')
                 ->findBy(['child' => $idChild], ['feasibility'=>'DESC'], null, 0);
 
-            // Rajouter Malus 4%
+            // Rajouter Malus
             $malus = 0;
             foreach ($wishlist as $whish) {
                 $whish->setFeasibility($whish->getFeasibility() - $malus);
@@ -59,24 +60,60 @@ class ElvesHomeController extends Controller
     }
 
     /**
-     * @Route("/giftTreatement")
+     * @Route("/traitement")
      */
     public function giftTreatementAction()
     {
         // Connection Manager
         $em = $this->getDoctrine()->getManager();
 
-        if (!empty($_POST['gift'])) {
-            $id = $_POST['id'];
-            $notation = $_POST['notation'];
-            $feasible = $_POST['feasible'];
-            $category = $_POST['category'];
+        if (empty($_POST['id'])) {
+
+            // Récupérer l'objet Gift en cours de traitement
+            $gift = $em->getRepository('SuperNoelBundle:Gift')
+                ->findOneById($_POST['id']);
 
             // Faisabilité
+            $feasibility = $_POST['notation'] + (5 * $gift->getChild()->getWise());
+            if ($_POST['feasible'] == true){
+                $feasibility += 50;
+            }
 
+            // Modif cadeau en cours
+//            $gift->setCategory($_POST['category']); // Blocage BDD
+            $gift->setFeasibility($feasibility);
+            $gift->setTreated(true);
+
+            // Activation du Malus si dernier cadeau de la liste de l'enfants
+            $wishlist = $em->getRepository('SuperNoelBundle:Gift')
+                ->findBy(['child' => $gift->getChild()->getId(), 'treated' => false]);
+
+            if (empty($wishlist)) {
+
+                $wishlist = $em->getRepository('SuperNoelBundle:Gift')
+                    ->findBy(['child' => $gift->getChild()->getId()]);
+
+                $malus = 0;
+                foreach ($wishlist as $whish) {
+                    $whish->setFeasibility($whish->getFeasibility() - $malus);
+                    $malus += self::Malus;
+                }
+
+            }
+
+            // Fin
+            $em->flush();
         }
 
-        header('Elves/index.html.twig');
+        if (!empty($_POST['newCategory'])) {
+            $category = new Category();
+            $category->setName($_POST['newCategory']);
+            $em->persist($category);
+            $em->flush();
+        }
+
+//        return $this->redirectToRoute('homepage');
+        return $this->render('Elves/index.html.twig');
     }
 }
 
