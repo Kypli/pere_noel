@@ -38,8 +38,9 @@
                                 <select name="category" id="category" class="form-control">
 
                                     {% for category in categories %}
-
-                                            <option value="{{ category.id }}"> {{ category.name }}</option
+                                        {% if category.name != 'Cadeau surprise' %}
+                                            <option value="{{ category.id }}"> {{ category.name }}</option>
+                                        {% endif %}
                                     {% endfor %}
                                 </select>
                             </div>

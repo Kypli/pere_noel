@@ -14,8 +14,19 @@
 
             {% if gifts is defined %}
                 <p>Liste de cadeau de {{ child.firstname  }} {{ child.lastname  }}</p>
+                {% if child.delivered == false %}
+                    <p>Cet enfant n'a pas été livré</p>
+                {% else %}
+                        <p>Cet enfant a été livré</p>
+                {% endif %}
                 {%  for gift in gifts %}
-                    {{ gift.name }} - {{ gift.feasibility }}
+                    <span class="
+                        {% if gift.feasibility >= 50 %}
+                            green
+                        {% else %}
+                            red
+                        {% endif %}
+                    ">{{ gift.name }} - {{ gift.feasibility }}</span>
                     <br/>
                 {% endfor %}
                 <p><a href="liste" class="lienV">Revenir à la liste des enfants</a></p>
