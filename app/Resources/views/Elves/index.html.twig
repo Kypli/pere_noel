@@ -1,15 +1,18 @@
 {% extends 'base.html.twig' %}
-
+{% block stylesheets %}
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/style.css') }}">
+{% endblock %}
 {% block body %}
-
-
     {% if gift is defined %}
         {% if gift != null %}
             <div class="container">
                 <div class="row namechild">
                     <div class="col-md-offset-8 col-md-4">
 
-                        <h1>{{ gift.child.firstname }} {{ gift.child.lastname }} </h1>
+                        <h1><img class="cookies" src="../{{ asset('assets/images/Cookies.png') }}"> {{ gift.child.firstname }} {{ gift
+                            .child
+                            .lastname }}
+                        </h1>
                     </div>
                 </div>
 
@@ -35,9 +38,9 @@
                                 <select name="category" id="category" class="form-control">
 
                                     {% for category in categories %}
-
-                                        <option value="{{ category.id }}"> {{ category.name }}</option>
-
+                                        {% if category.name != 'Cadeau surprise' %}
+                                            <option value="{{ category.id }}"> {{ category.name }}</option>
+                                        {% endif %}
                                     {% endfor %}
                                 </select>
                             </div>
@@ -54,7 +57,7 @@
                             <div class="col-md-4 cadeaux">
                                 <div class="panel panel-default">
                                     <div class="panel-heading"><h1>Liste des cadeaux</h1></div>
-                                    <div class="panel-body">
+                                    <div class="panel-body wish">
                                         <ol>
                                             {% for wish in wishlist %}
 
@@ -83,16 +86,14 @@
                                     <div class="panel-heading"><h1> Faisabilité</h1>
 
                                     </div>
-                                    <div class="panel-body">
+                                    <div class="panel-body board">
                                         <table classe="table">
                                             <tr>
                                                 <th>Sage</th>
                                                 <th>Réalisable</th>
                                             </tr>
                                             <tr>
-
                                                 <td>
-
                                                     {% if gift.child.wise == 1 %}
                                                         Peu sage <br/>5 points
                                                     {% elseif gift.child.wise == 2 %}
@@ -149,11 +150,11 @@
                         </div>
                     </section>
                 </form>
+                <a href="liste" class="lienV"><button type="button" class="btn btn-info info">Aller sur la liste des enfants</button></a>
             </div>
         {% else %}
             <div class="container listevide">
             <div id="snow">
-
                     <h1>La liste des cadeaux est vide !</h1>
                 </div>
                 <div class="contents">
@@ -168,6 +169,7 @@
             </div>
         {% endif %}
     {% endif %}
+
 {% endblock %}
 
 

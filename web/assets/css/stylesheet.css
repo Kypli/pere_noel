@@ -1,14 +1,26 @@
-/*page elfes*/
-body {
-    background-image: url("../images/iwp781039703-gradient-wallpapers.jpg");
+
+/*page d'accueil*/
+@import url('https://fonts.googleapis.com/css?family=Gloria+Hallelujah');
+
+.titlefields {
+    font-family: 'Gloria Hallelujah', cursive;
 }
 
-h1 {
-    
+/*fin page d'accueil*/
+
+/*page elfes*/
+.giftlist {
+    padding-top: 70px;
+    color: darkblue;
+}
+
+
+.cookies {
+    width: 60px;
+    height: auto;
 }
 
 .namechild {
-
     padding-bottom: 25px;
 }
 
@@ -16,16 +28,14 @@ h1 {
 .table {
     border: medium solid #6495ed;
     border-collapse: collapse;
-
 }
 
 div.panel-body>table {
     display: flex;
     justify-content: center;
-
 }
 
-div.panel-body {
+div.panel-body.wish, div.panel-body.board {
     background-color: #87CEEB;
 }
 
@@ -36,8 +46,8 @@ th {
     width: 50%;
     padding: 5px;
     background-color: #D0E3FA;
-
 }
+
 td {
     font-family: sans-serif;
     border: thin solid #6495ed;
@@ -46,21 +56,6 @@ td {
     text-align: center;
     background-color: #ffffff;
 }
-
-/*fin page elfes*/
-
-/*page d'accueil*/
-@import url('https://fonts.googleapis.com/css?family=Gloria+Hallelujah');
-
-
-.panel-body {
-    width: 60%;
-}
-.titlefields {
-    font-family: 'Gloria Hallelujah', cursive;
-}
-
-/*fin page d'accueil*/
 
 .red {
     color: red;
@@ -75,8 +70,28 @@ td {
 
 .blue {
     color: blue;
+    Font-Weight: bold;
 }
+
+.lienV {
+    color: darkblue;
+    width: 50%;
+    margin: auto;
+    text-align: center;
+}
+
+.bold {
+    Font-Weight: bold;
+}
+
+.info {
+    text-align: center;
+    margin: auto;
+    color: darkblue;
+}
+
 /*fin page elfes*/
+
 
 #snow{
     background: none;
@@ -93,21 +108,25 @@ td {
     -ms-animation: snow 10s linear infinite;
     animation: snow 10s linear infinite;
 }
+
 @keyframes snow {
     0% {background-position: 0px 0px, 0px 0px, 0px 0px;}
     50% {background-position: 500px 500px, 100px 200px, -100px 150px;}
     100% {background-position: 500px 1000px, 200px 400px, -100px 300px;}
 }
+
 @-moz-keyframes snow {
     0% {background-position: 0px 0px, 0px 0px, 0px 0px;}
     50% {background-position: 500px 500px, 100px 200px, -100px 150px;}
     100% {background-position: 400px 1000px, 200px 400px, 100px 300px;}
 }
+
 @-webkit-keyframes snow {
     0% {background-position: 0px 0px, 0px 0px, 0px 0px;}
     50% {background-position: 500px 500px, 100px 200px, -100px 150px;}
     100% {background-position: 500px 1000px, 200px 400px, -100px 300px;}
 }
+
 @-ms-keyframes snow {
     0% {background-position: 0px 0px, 0px 0px, 0px 0px;}
     50% {background-position: 500px 500px, 100px 200px, -100px 150px;}
@@ -118,9 +137,6 @@ div#snow>h1 {
     padding-top: 70px;
     text-align: center;
     font-size: 66px;
-}
-div.container.listevide {
-    background-image: url("../images/iwp781039703-gradient-wallpapers.jpg");
 }
 
 .santa {
@@ -139,6 +155,7 @@ div.container.listevide {
     0%   { background-position: 1000px 100%; }
     100% { background-position: 0 100%; }
 }
+
 @keyframes animation_santa {
     0%   { background-position: -300px 100%; }
     100% { background-position: 2000px 100%; }
@@ -190,7 +207,6 @@ div.buttonsubmit1 {
     padding-top: 25px;
     padding-left: 195px;
 }
-
 
 /* santa page */
 
