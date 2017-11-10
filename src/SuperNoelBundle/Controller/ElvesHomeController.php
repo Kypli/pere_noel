@@ -15,7 +15,7 @@ class ElvesHomeController extends AbstractController
     const Malus = 4;
 
     /**
-     * @Route("/test")
+     * @Route("/")
      */
     public function elvesAction()
     {
@@ -114,8 +114,7 @@ class ElvesHomeController extends AbstractController
             $em->flush();
         }
 
-        return $this->RedirectResponse($this->generateUrl('homepage'));
-
+        return $this->elvesAction();
     }
 }
 
