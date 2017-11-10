@@ -1,10 +1,21 @@
-/*page elfes*/
-body {
-    background-image: url("../images/iwp781039703-gradient-wallpapers.jpg");
+
+/*page d'accueil*/
+@import url('https://fonts.googleapis.com/css?family=Gloria+Hallelujah');
+
+
+.panel-body {
+    width: 60%;
+}
+.titlefields {
+    font-family: 'Gloria Hallelujah', cursive;
 }
 
-h1 {
-    
+/*fin page d'accueil*/
+
+/*page elfes*/
+.cookies {
+    width: 60px;
+    height: auto;
 }
 
 .namechild {
@@ -25,7 +36,7 @@ div.panel-body>table {
 
 }
 
-div.panel-body {
+div.panel-body.wish, div.panel-body.board {
     background-color: #87CEEB;
 }
 
@@ -47,21 +58,6 @@ td {
     background-color: #ffffff;
 }
 
-/*fin page elfes*/
-
-/*page d'accueil*/
-@import url('https://fonts.googleapis.com/css?family=Gloria+Hallelujah');
-
-
-.panel-body {
-    width: 60%;
-}
-.titlefields {
-    font-family: 'Gloria Hallelujah', cursive;
-}
-
-/*fin page d'accueil*/
-
 .red {
     color: red;
 }
@@ -81,6 +77,7 @@ td {
     color: greenyellow;
 }
 /*fin page elfes*/
+
 
 #snow{
     background: none;
@@ -122,9 +119,6 @@ div#snow>h1 {
     padding-top: 70px;
     text-align: center;
     font-size: 66px;
-}
-div.container.listevide {
-    background-image: url("../images/iwp781039703-gradient-wallpapers.jpg");
 }
 
 .santa {
@@ -194,7 +188,6 @@ div.buttonsubmit1 {
     padding-top: 25px;
     padding-left: 195px;
 }
-
 
 /* santa page */
 
