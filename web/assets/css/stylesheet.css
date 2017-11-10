@@ -211,14 +211,16 @@ div.buttonsubmit1 {
 /* santa page */
 
 .bg-santa {
-    background-image: url('/assets/images/snow-red.jpg');
-    background-size: cover;
-    background-repeat: no-repeat;
+    background-image: url('../images/WhiteChristmasPattern.jpg');
+    background-repeat: repeat;
     min-height: 100vh;
+    color: whitesmoke;
+    padding-top: 50px;
 }
 
 .bg-santa-box {
-    background-color: rgba(255, 255, 255, 1);
+    background-color: rgba(0, 0, 0, 0.9);
     width: 65%;
     margin: 0 auto;
+    border-radius: 8px;
 }

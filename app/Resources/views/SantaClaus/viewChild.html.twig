@@ -20,8 +20,8 @@
             {% endif %}
         </div>
         <div class="row bg-santa-box">
-            <div class="col-sm-1">Adresse:</div>
-            <div class="col-sm-11">
+            <div class="col-sm-2">Adresse:</div>
+            <div class="col-sm-10">
                 <address>
                     {{ child.adressnumber }} {{ child.adressstreet }}<br>
                     {{ child.adresscity }} {{ child.adresspostal ?? "" }}
@@ -29,8 +29,8 @@
             </div>
         </div>
         <div class="row bg-santa-box">
-            <div class="col-sm-1">Sagesse:</div>
-            <div class="col-sm-11">{{ child.wise|rating(5, "fa-lg") }}</div>
+            <div class="col-sm-2">Sagesse:</div>
+            <div class="col-sm-10">{{ child.wise|rating(5, "fa-lg") }}</div>
         </div>
         <div class="row bg-santa-box">
             <div class="col-md-12">
