@@ -27,7 +27,8 @@ class HomeController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->persist( $child );
             $em->flush();
-            return $this->redirectToRoute( 'enfant_route', ['childId' => $child->getId()],301);
+            header('Location: /enfant/' . $child->getId());
+            exit;
         }
         return $this->render('Home/home.html.twig', array(
             'form' => $form->createView(),
@@ -50,26 +51,25 @@ class HomeController extends Controller
 
         $form = $formBuilder->getForm();
 
-        $em = $this->getDoctrine()->getManager();
-        $child = $em->getRepository('SuperNoelBundle:Child')
-            ->find($child->getId());
-
         $form->handleRequest( $request );
         if ($form->isSubmitted() && $form->isValid()) {
             $gifts = $child->getGifts();
-            if ($gifts && count((array)$gifts) > 5) {
+            if ($gifts && $gifts->count() >=5) {
                 $errorMessage = 'Petit Maliiiin !!!!!! ';
             } else {
                 $gift->setTreated(false);
                 $gift->setCategory(null);
                 $gift->setChild($child);
 
+                $em = $this->getDoctrine()->getManager();
                 $em->persist( $gift );
                 $em->flush();
-            }
-            //return $this->redirectToRoute( 'enfant_route', ['childId' => $child->getId()],301);
-        }
 
+                //return $this->redirectToRoute( 'enfant_route', ['childId' => $child->getId()],301);
+                header('Location: /enfant/' . $child->getId());
+                exit;
+            }
+        }
 
         return $this->render('Home/gifts.html.twig', array(
             'form' => $form->createView(),
