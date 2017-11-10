@@ -2,6 +2,7 @@
 
 namespace SuperNoelBundle\Form;
 
+use blackknight467\StarRatingBundle\Form\RatingType;
 use SuperNoelBundle\Entity\Child;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -47,14 +48,13 @@ class childsFormType extends AbstractType
                 'label' => "Pays" ,
                 'attr' => array('class' => 'titlefields')
             ))
-            ->add('wise',    TextType::class, array(
-                'label' => "Sagesse" ,
+            ->add('wise',   RatingType::class, array(
+                'label' => 'As-tu été sage ?',
                 'attr' => array('class' => 'titlefields')
             ))
             ->add('message',    TextareaType::class, array(
                 'label' => "Message" ,
                 'attr' => array('class' => 'titlefields', 'cols' => '20', 'rows' => '15')
-
             ))
             ->add('envoyer',         SubmitType::class, array(
                 'label' => "Envoyer" ,

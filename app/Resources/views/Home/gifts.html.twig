@@ -9,7 +9,7 @@
                 {{ errorMessage }}
             </div>
             {% endif %}
-        <div class="col-xs-offset-2 col-xs-8 panel-body">
+        <div class="col-xs-offset-2 col-xs-8 panel-body panel-accueil">
             <h1>Ajoute ton cadeau</h1>
             {% form_theme form 'bootstrap_3_layout.html.twig' %}
             {{ form_start(form) }}
@@ -17,7 +17,7 @@
             {{ form_end(form) }}
         </div>
         {% if child.gifts %}
-        <div class="col-xs-offset-2 col-xs-8 panel-body">
+        <div class="col-xs-offset-2 col-xs-8 panel-body panel-accueil">
             <h2>Voici la liste des cadeaux de tes rêves</h2>
             <ul>
             {% for gift in child.gifts %}

@@ -51,13 +51,31 @@ td {
 
 /*page d'accueil*/
 @import url('https://fonts.googleapis.com/css?family=Gloria+Hallelujah');
+@import url('https://fonts.googleapis.com/css?family=Luckiest+Guy');
 
-
-.panel-body {
+.supernoel {
+    font-family: 'Luckiest Guy', cursive;
+}
+.panel-accueil {
     width: 60%;
 }
-.titlefields {
+.control-label {
     font-family: 'Gloria Hallelujah', cursive;
+    margin-top: 20px;
+}
+
+.home-message {
+    margin-top: 30px;
+    margin-bottom: 30px;
+    font-family: 'Gloria Hallelujah', cursive;
+}
+
+.panel-message {
+    font-size: 25px;
+    font-family: 'Gloria Hallelujah', cursive;
+}
+.titlefields {
+    mar
 }
 
 /*fin page d'accueil*/

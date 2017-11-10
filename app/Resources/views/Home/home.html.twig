@@ -1,20 +1,26 @@
 {% extends 'base.html.twig' %}
 {% block title %}Accueil{% endblock %}
+{% block stylesheets %}
+    <link rel="stylesheet" type="text/css" href="{{ asset('bundles/starrating/css/rating.css') }}"/>
+{% endblock %}
 {% block navbar %}
 {% endblock %}
 {% block body %}
 <div class="jumbotron">
     <h1 class="supernoel" >SuperNoel</h1>
+    <p class="home-message">Noël arrive à grand pas !! <br/>Envoi vite ta liste de cadeaux au Père Noël pour qu'il puisse réaliser tes rêves.  </p>
 </div>
-
 <div class="container">
-    <div class="col-xs-offset-2 col-xs-8 panel-body">
-        <legend>Dis nous qui tu es</legend>
+    <div class="col-xs-offset-2 col-xs-8 panel-body panel-accueil">
+        <legend class="panel-message">Envois nous tes coordonnées et tu pourras envoyer ta liste au Père Noël.</legend>
         {% form_theme form 'bootstrap_3_layout.html.twig' %}
         {{ form_start(form) }}
         {{ form_widget(form) }}
         {{ form_end(form) }}
     </div>
 </div>
+{% endblock %}
+{% block script %}
+    <script src="{{ asset('bundles/starrating/js/rating.js') }}"></script>
 {% endblock %}
 
