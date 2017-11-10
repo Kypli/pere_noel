@@ -15,7 +15,7 @@ class ElvesHomeController extends Controller
     const Malus = 4;
 
     /**
-     * @Route("/")
+     * @Route("/test")
      */
     public function elvesAction()
     {
@@ -77,7 +77,7 @@ class ElvesHomeController extends Controller
 
             // Faisabilité
             $feasibility = $_POST['notation'] + (5 * $gift->getChild()->getWise());
-            if ($_POST['feasible'] == true){
+            if (isset($_POST['feasible']) && $_POST['feasible'] == true){
                 $feasibility += 50;
             }
 
@@ -114,7 +114,7 @@ class ElvesHomeController extends Controller
             $em->flush();
         }
 
-        return $this->redirectToRoute('homepage');
+        return $this->RedirectResponse($this->generateUrl('homepage'));
 
     }
 }
