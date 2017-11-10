@@ -49,7 +49,10 @@ class HomeController extends Controller
         $formBuilder = $this->createFormBuilder($gift);
         $formBuilder
             ->add('name', TextType::class)
-            ->add('save', SubmitType::class);
+            ->add('save',         SubmitType::class, array(
+                'label' => "Envoyer" ,
+                'attr' => array('class' => 'glyphicon glyphicon-envelope btn btn-success')
+            ));
 
         $form = $formBuilder->getForm();
 
