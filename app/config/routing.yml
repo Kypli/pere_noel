@@ -2,4 +2,3 @@ super_noel:
     resource: "@SuperNoelBundle/Controller/"
     type:     annotation
     prefix:   /
-
