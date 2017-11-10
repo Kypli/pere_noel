@@ -49,15 +49,18 @@ class HomeController extends Controller
         $formBuilder = $this->createFormBuilder($gift);
         $formBuilder
             ->add('name', TextType::class)
-            ->add('save', SubmitType::class);
+            ->add('save',         SubmitType::class, array(
+                'label' => "Envoyer" ,
+                'attr' => array('class' => 'glyphicon glyphicon-envelope btn btn-success')
+            ));
 
         $form = $formBuilder->getForm();
 
         $form->handleRequest( $request );
         if ($form->isSubmitted() && $form->isValid()) {
             $gifts = $child->getGifts();
-            if ($gifts && $gifts->count() >=5) {
-                $errorMessage = 'Petit Maliiiin !!!!!! ';
+            if ($gifts && $gifts->count() >=10) {
+                $errorMessage = 'Petit Malin faut pas abuser !!!!!! ';
             } else {
                 $gift->setTreated(false);
                 $gift->setCategory(null);
@@ -67,7 +70,6 @@ class HomeController extends Controller
                 $em->persist( $gift );
                 $em->flush();
 
-                //return $this->redirectToRoute( 'enfant_route', ['childId' => $child->getId()],301);
                 header('Location: /enfant/' . $child->getId());
                 exit;
             }

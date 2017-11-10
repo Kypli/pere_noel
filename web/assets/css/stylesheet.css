@@ -57,6 +57,55 @@ td {
     background-color: #ffffff;
 }
 
+/*fin page elfes*/
+
+/*page d'accueil*/
+@import url('https://fonts.googleapis.com/css?family=Gloria+Hallelujah');
+@import url('https://fonts.googleapis.com/css?family=Luckiest+Guy');
+.police {
+    font-family: 'Gloria Hallelujah', cursive;
+}
+.supernoel {
+    font-family: 'Luckiest Guy', cursive;
+}
+
+.home-content {
+    background-image: url('/assets/images/fondaccueil.jpg');
+    background-size: cover;
+}
+
+.jumbotron {
+    margin-bottom: 0px;
+    background-image: url('/assets/images/fondjumbo3.jpg');
+    background-size: cover;
+}
+.panel-accueil {
+    width: 60%;
+}
+.control-label {
+    font-family: 'Gloria Hallelujah', cursive;
+    margin-top: 20px;
+    color: black;
+    font-size: 20px;
+}
+
+.home-message {
+    margin-top: 30px;
+    margin-bottom: 30px;
+    font-family: 'Gloria Hallelujah', cursive;
+}
+
+.panel-message {
+    font-size: 25px;
+    font-family: 'Gloria Hallelujah', cursive;
+    color: white;
+}
+.titlefields {
+    mar
+}
+
+/*fin page d'accueil*/
+
 .red {
     color: red;
 }
@@ -215,14 +264,16 @@ div.buttonsubmit1 {
 /* santa page */
 
 .bg-santa {
-    background-image: url('/assets/images/snow-red.jpg');
-    background-size: cover;
-    background-repeat: no-repeat;
+    background-image: url('../images/WhiteChristmasPattern.jpg');
+    background-repeat: repeat;
     min-height: 100vh;
+    color: whitesmoke;
+    padding-top: 50px;
 }
 
 .bg-santa-box {
-    background-color: rgba(255, 255, 255, 1);
+    background-color: rgba(0, 0, 0, 0.9);
     width: 65%;
     margin: 0 auto;
+    border-radius: 8px;
 }
