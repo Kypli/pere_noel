@@ -1,24 +1,42 @@
-
 /*page elfes*/
+body {
+    background-image: url("../images/iwp781039703-gradient-wallpapers.jpg");
+}
+
+h1 {
+    
+}
 
 .namechild {
 
     padding-bottom: 25px;
 }
 
+
 .table {
     border: medium solid #6495ed;
     border-collapse: collapse;
-    width: 50%;
+
+}
+
+div.panel-body>table {
+    display: flex;
+    justify-content: center;
+
+}
+
+div.panel-body {
+    background-color: #87CEEB;
 }
 
 th {
     font-family: monospace;
     border: thin solid #6495ed;
+    text-align: center;
     width: 50%;
     padding: 5px;
     background-color: #D0E3FA;
-    background-image: url(sky.jpg);
+
 }
 td {
     font-family: sans-serif;
@@ -27,6 +45,10 @@ td {
     padding: 5px;
     text-align: center;
     background-color: #ffffff;
+}
+
+.panel-body {
+    width: 60%;
 }
 
 .red {
@@ -44,6 +66,120 @@ td {
     color: blue;
 }
 /*fin page elfes*/
+
+#snow{
+    background: none;
+    font-family: Androgyne;
+    background-image: url('http://www.wearewebstars.dk/codepen/img/s1.png'), url('http://www.wearewebstars.dk/codepen/img//s2.png'), url('http://www.wearewebstars.dk/codepen/img//s3.png');
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index:1;
+    -webkit-animation: snow 10s linear infinite;
+    -moz-animation: snow 10s linear infinite;
+    -ms-animation: snow 10s linear infinite;
+    animation: snow 10s linear infinite;
+}
+@keyframes snow {
+    0% {background-position: 0px 0px, 0px 0px, 0px 0px;}
+    50% {background-position: 500px 500px, 100px 200px, -100px 150px;}
+    100% {background-position: 500px 1000px, 200px 400px, -100px 300px;}
+}
+@-moz-keyframes snow {
+    0% {background-position: 0px 0px, 0px 0px, 0px 0px;}
+    50% {background-position: 500px 500px, 100px 200px, -100px 150px;}
+    100% {background-position: 400px 1000px, 200px 400px, 100px 300px;}
+}
+@-webkit-keyframes snow {
+    0% {background-position: 0px 0px, 0px 0px, 0px 0px;}
+    50% {background-position: 500px 500px, 100px 200px, -100px 150px;}
+    100% {background-position: 500px 1000px, 200px 400px, -100px 300px;}
+}
+@-ms-keyframes snow {
+    0% {background-position: 0px 0px, 0px 0px, 0px 0px;}
+    50% {background-position: 500px 500px, 100px 200px, -100px 150px;}
+    100% {background-position: 500px 1000px, 200px 400px, -100px 300px;}
+}
+
+div#snow>h1 {
+    padding-top: 70px;
+    text-align: center;
+    font-size: 66px;
+}
+div.container.listevide {
+    background-image: url("../images/iwp781039703-gradient-wallpapers.jpg");
+}
+
+.santa {
+    position: absolute;
+    bottom: 390px;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background:  url(http://hatsuka.info/sample/20161202_svg/santa.svg) 0 100% no-repeat;
+    background-size:  auto 60px;
+    z-index: 1;
+    animation: animation_santa linear 20s infinite both;
+}
+
+@keyframes animation_layer {
+    0%   { background-position: 1000px 100%; }
+    100% { background-position: 0 100%; }
+}
+@keyframes animation_santa {
+    0%   { background-position: -300px 100%; }
+    100% { background-position: 2000px 100%; }
+}
+
+.star {
+    position: absolute;
+    top: 80px;
+    left: 142px;
+    stroke-dasharray: 10;
+    stroke-dashoffset: 100;
+    stroke-linecap: round;
+    animation: star 5s linear forwards;
+    animation-iteration-count: infinite;
+}
+
+.star .cls-1 {
+    stroke: orange;
+}
+
+@keyframes star {
+    to {
+        stroke-dashoffset: 0;
+    }
+}
+
+.path {
+    position: absolute;
+    top: 100px;
+    stroke-linecap: round;
+    stroke-dasharray: 1000;
+    stroke-dashoffset: 1000;
+    animation: dash 5s linear forwards;
+    animation-iteration-count: infinite;
+}
+
+@keyframes dash {
+    to {
+        stroke-dashoffset: 0;
+    }
+}
+
+.relative {
+    position: relative;
+}
+
+div.buttonsubmit1 {
+
+    padding-top: 25px;
+    padding-left: 195px;
+}
+
 
 /* santa page */
 

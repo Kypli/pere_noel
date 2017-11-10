@@ -4,18 +4,18 @@ namespace SuperNoelBundle\Controller;
 
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use SuperNoelBundle\Entity\Category;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 /**
  * Class ElveHomeController
  * @route("/elfes")
  */
-class ElvesHomeController extends Controller
+class ElvesHomeController extends AbstractController
 {
     const Malus = 4;
 
     /**
-     * @Route("/test")
+     * @Route("/")
      */
     public function elvesAction()
     {
@@ -114,8 +114,7 @@ class ElvesHomeController extends Controller
             $em->flush();
         }
 
-        return $this->RedirectResponse($this->generateUrl('homepage'));
-
+        return $this->elvesAction();
     }
 }
 
