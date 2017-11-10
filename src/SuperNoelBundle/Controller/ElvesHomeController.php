@@ -70,7 +70,6 @@ class ElvesHomeController extends AbstractController
      */
     public function giftTreatementAction()
     {
-
         // Connection Manager
         $em = $this->getDoctrine()->getManager();
 
@@ -143,6 +142,34 @@ class ElvesHomeController extends AbstractController
 
         return $this->elvesAction();
 
+    }
+
+    /**
+     * @Route("/liste")
+     */
+    public function listChildren()
+    {
+        // Connection Manager
+        $em = $this->getDoctrine()->getManager();
+
+        if (!empty($_POST['id'])) {
+
+            $gifts = $em->getRepository('SuperNoelBundle:Gift')
+                ->findBy(['child' => $_POST['id']]);
+
+            return $this->render('Elves/liste.html.twig',  [
+                'gifts' => $gifts,
+            ]);
+
+        } else {
+
+            $children = $em->getRepository('SuperNoelBundle:Child')
+                ->findAll();
+
+            return $this->render('Elves/liste.html.twig',  [
+                'children' => $children,
+            ]);
+        }
     }
 }
 

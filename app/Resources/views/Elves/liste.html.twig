@@ -1,0 +1,16 @@
+<p>coucou</p>
+
+{% if children is defined %}
+    {%  for child in children %}
+        <form action="" method="post">
+            <input type="hidden" name="id" value="{{ child.id }}">
+            Nom: {{ child.firstname }}
+            <input type="submit" value="Détails">
+            <br/>
+        </form>
+    {% endfor %}
+{% endif %}
+
+{% if children is not defined %}
+    Liste
+{% endif %}

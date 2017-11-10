@@ -49,7 +49,7 @@ class childsFormType extends AbstractType
             ))
             ->add('wise',    TextType::class, array(
                 'label' => "Sagesse" ,
-                'attr' => array('class' => 'titlefields')
+                'attr' => array('class' => 'titlefields', 'placeholder' => 'Mettez une note de 1 à 5')
             ))
             ->add('message',    TextareaType::class, array(
                 'label' => "Message" ,
