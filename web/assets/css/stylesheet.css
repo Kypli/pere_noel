@@ -74,8 +74,12 @@ td {
 }
 
 .lienV {
-    color: greenyellow;
+    color: darkblue;
+    width: 50%;
+    margin: auto;
+    text-align: center;
 }
+
 /*fin page elfes*/
 
 

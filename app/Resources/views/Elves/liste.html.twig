@@ -1,23 +1,26 @@
 {% extends 'base.html.twig' %}
-
+{% block stylesheets %}
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/style.css') }}">
+{% endblock %}
 {% block body %}
 <div class="container">
     <div class="row">
         <div>
             {% if children is defined %}
-                <p>Liste des enfants</p>
+                <h1>Liste des enfants</h1>
                 {%  for child in children %}
-                    <a class="lienV" href="listeCadeaux?id={{ child.id }}">{{ child.firstname }}</a>
+                    <p><a class="lienV list-group-item" href="listeCadeaux?id={{ child.id }}">{{ child.firstname }}</a></p>
                     <br/>
                 {% endfor %}
             {% endif %}
 
             {% if gifts is defined %}
-                <p>Liste de cadeau de {{ child.firstname  }} {{ child.lastname  }}</p>
+                <h1>Liste de cadeaux de {{ child.firstname  }} {{ child.lastname  }}</h1>
                 {%  for gift in gifts %}
                     {{ gift.name }} - {{ gift.feasibility }}
                     <br/>
                 {% endfor %}
+                <br>
                 <p><a href="liste" class="lienV">Revenir à la liste des enfants</a></p>
             {% endif %}
             <p><a href="traitement" class="lienV">Revenir au traitement des cadeaux</a></p>
