@@ -39,8 +39,7 @@
 
                                     {% for category in categories %}
 
-                                        <option value="{{ category.id }}"> {{ category.name }}</option>
-
+                                            <option value="{{ category.id }}"> {{ category.name }}</option
                                     {% endfor %}
                                 </select>
                             </div>
@@ -93,9 +92,7 @@
                                                 <th>Réalisable</th>
                                             </tr>
                                             <tr>
-
                                                 <td>
-
                                                     {% if gift.child.wise == 1 %}
                                                         Peu sage <br/>5 points
                                                     {% elseif gift.child.wise == 2 %}
