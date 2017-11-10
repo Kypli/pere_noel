@@ -1,11 +1,7 @@
-
 /*page elfes*/
-body {
-    background-image: url("../images/iwp781039703-gradient-wallpapers.jpg");
-}
-
-h1 {
-    
+.cookies {
+    width: 60px;
+    height: auto;
 }
 
 .namechild {
@@ -26,7 +22,7 @@ div.panel-body>table {
 
 }
 
-div.panel-body {
+div.panel-body.wish, div.panel-body.board {
     background-color: #87CEEB;
 }
 

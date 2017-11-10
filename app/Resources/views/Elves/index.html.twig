@@ -9,7 +9,10 @@
                 <div class="row namechild">
                     <div class="col-md-offset-8 col-md-4">
 
-                        <h1>{{ gift.child.firstname }} {{ gift.child.lastname }} </h1>
+                        <h1><img class="cookies" src="../{{ asset('assets/images/Cookies.png') }}"> {{ gift.child.firstname }} {{ gift
+                            .child
+                            .lastname }}
+                        </h1>
                     </div>
                 </div>
 
@@ -54,7 +57,7 @@
                             <div class="col-md-4 cadeaux">
                                 <div class="panel panel-default">
                                     <div class="panel-heading"><h1>Liste des cadeaux</h1></div>
-                                    <div class="panel-body">
+                                    <div class="panel-body wish">
                                         <ol>
                                             {% for wish in wishlist %}
 
@@ -83,7 +86,7 @@
                                     <div class="panel-heading"><h1> Faisabilité</h1>
 
                                     </div>
-                                    <div class="panel-body">
+                                    <div class="panel-body board">
                                         <table classe="table">
                                             <tr>
                                                 <th>Sage</th>
@@ -117,7 +120,7 @@
                                             </tr>
                                             <tr>
                                                 <td><input type="range" min="-0" max="25" value="0" step="1" name="notation" id="notation"
-                                                                     list="powers"
+                                                           list="powers"
                                                            onclick='fnote()'>
                                                     <datalist id="powers">
                                                         <option value="0">
@@ -149,10 +152,11 @@
                         </div>
                     </section>
                 </form>
+
             </div>
         {% else %}
             <div class="container listevide">
-            <div id="snow">
+                <div id="snow">
 
                     <h1>La liste des cadeaux est vide !</h1>
                 </div>
