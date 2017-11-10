@@ -2,44 +2,82 @@
 namespace SuperNoelBundle\Controller;
 
 use SuperNoelBundle\Entity\Child;
+use SuperNoelBundle\Entity\Gift;
+use SuperNoelBundle\Form\childsFormType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
-use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\HttpFoundation\Request;
 
-
+/**
+ * @Route("/")
+ */
 class HomeController extends Controller
 {
     /**
      * @Route("/")
      */
-    public function indexAction() {
+    public function addAction(Request $request)
+    {
+        $child = new Child();
+        $form = $this->createForm(childsFormType::class, $child);
 
-        $child = new Child();    // On crée un objet Child
-        $formBuilder = $this->createFormBuilder($child); // On crée le FormBuilder
-
-        // On ajoute les champs de l'entité Child que l'on veut à notre formulaire
-        $formBuilder
-            ->add('firstname',         TextType::class)
-            ->add('lastname',    TextType::class)
-            ->add('mail',    TextType::class)
-            ->add('adressnumber',    TextType::class)
-            ->add('adressstreet',    TextType::class)
-            ->add('adresscity',    TextType::class)
-            ->add('adresscountry',    TextType::class)
-            ->add('adresspostal',    TextType::class)
-            ->add('message',    TextareaType::class)
-            ->add('wise',    TextType::class)
-            ->add('save',         SubmitType::class)
-        ;
-
-        // À partir du formBuilder, on génère le formulaire
-        $form = $formBuilder->getForm();
-
-        // CreateView() permet à la vue d’afficher le formulaire
+        $form->handleRequest( $request );
+        if ($form->isSubmitted() && $form->isValid()) {
+            $child->setDelivered(false);
+            $em = $this->getDoctrine()->getManager();
+            $em->persist( $child );
+            $em->flush();
+            header('Location: /enfant/' . $child->getId());
+            exit;
+        }
         return $this->render('Home/home.html.twig', array(
             'form' => $form->createView(),
         ));
     }
+
+    /**
+    * @Route("/enfant/{id}")
+    */
+    public function giftAction(Child $child, Request $request)
+    {
+        $gift = new Gift();
+
+        $errorMessage = false;
+
+        $formBuilder = $this->createFormBuilder($gift);
+        $formBuilder
+            ->add('name', TextType::class)
+            ->add('save', SubmitType::class);
+
+        $form = $formBuilder->getForm();
+
+        $form->handleRequest( $request );
+        if ($form->isSubmitted() && $form->isValid()) {
+            $gifts = $child->getGifts();
+            if ($gifts && $gifts->count() >=5) {
+                $errorMessage = 'Petit Maliiiin !!!!!! ';
+            } else {
+                $gift->setTreated(false);
+                $gift->setCategory(null);
+                $gift->setChild($child);
+
+                $em = $this->getDoctrine()->getManager();
+                $em->persist( $gift );
+                $em->flush();
+
+                //return $this->redirectToRoute( 'enfant_route', ['childId' => $child->getId()],301);
+                header('Location: /enfant/' . $child->getId());
+                exit;
+            }
+        }
+
+        return $this->render('Home/gifts.html.twig', array(
+            'form' => $form->createView(),
+            'child'=> $child,
+            'errorMessage' => $errorMessage
+        ));
+    }
+
 }
