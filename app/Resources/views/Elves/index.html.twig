@@ -1,6 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
+<<<<<<< HEAD
     <div class="row namechild">
         <div class="col-md-offset-6 col-md-6">
             <h1>{{ gift.child.firstname }} - {{ gift.child.lastname }} </h1>
@@ -23,109 +24,178 @@
                 <div class="form-group">
                     <label for="category">Catégorie</label>
                     <select name="category" id="category" class="form-control">
+=======
+>>>>>>> d29f109945eab20617600956b2063ec13d3975ce
 
-                        {% for category in categories %}
 
-                            <option value="{{ category.id }}"> {{ category.name }}</option>
+    {% if gift is defined %}
+        {% if gift != null %}
+            <div class="container">
+                <div class="row namechild">
+                    <div class="col-md-offset-8 col-md-4">
 
-                        {% endfor %}
-                    </select>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-6">
-                <div class="buttonsubmit1">
-                    <button type="submit" name="newcategory" class="btn btn-primary">Ajouter la catégorie</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <hr>
-
-    <section class="faisability">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-4 cadeaux">
-                    <div class="panel panel-default">
-                        <div class="panel-heading"><h1>Liste des cadeaux</h1></div>
-                        <div class="panel-body">
-                            {% for wishlist in wishlist %}
-                                <ol>
-                                    <li>{{ gift.name }} - {{ gift.feasibility }} %
-                                    </li>
-                                </ol>
-                            {% endfor %}
-                        </div>
+                        <h1>{{ gift.child.firstname }} {{ gift.child.lastname }} </h1>
                     </div>
                 </div>
-                <div class="col-md-8 faisability">
-                    <form method="post" action="" id="">
-                        <div class="panel panel-default">
-                            <div class="panel-heading"><h1> Faisabilité</h1>
 
+                <div class="row">
+                    <div class="col-md-6">
+                        <h1>Nom du cadeau: {{ gift.name }}</h1>
+                    </div>
+                    <div class="col-md-6">
+                        <form method="post" action="traitement">
+                            <div class="buttonsubmit1">
+                                <input type="text" name="newCategory"/>
+                                <button type="submit" class="btn btn-primary">Ajouter la catégorie</button>
                             </div>
-                            <div class="panel-body">
-                                <table classe="table">
-                                    <tr>
-                                        <th>Sage</th>
-                                        <th>Réalisable</th>
-                                    </tr>
-                                    <tr>
-                                        <div class="form-group">
-                                            <td>
-                                                <INPUT type="radio" name="wisdom" value="1">peu sage
-                                                <INPUT type="radio" name="wisdom" value="2"> assez sage
-                                                <INPUT type="radio" name="wisdom" value="3">sage
-                                                <INPUT type="radio" name="wisdom" value="4">très sage
-                                                <INPUT type="radio" name="wisdom" value="5">Super sage
-                                            </td>
-                                            <td>
-                                                <input type="checkbox" name="feasible" value="feasible">
-                                                <label for="feasible">Oui</label>
-                                                <input type="checkbox" name="notfeasible" value="notfeasible">
-                                                <label for="notfeasible">Non</label>
-                                            </td>
-                                        </div>
-                                    </tr>
-                                    <tr>
-                                        <th>Note instinctive</th>
-                                        <th>Résultat</th>
-                                    </tr>
-                                    <tr>
-                                        <div class="form-group">
-                                            <td><input type="range" min="-100" max="100" value="0" step="2" name="power" list="powers">
-                                                <datalist id="powers">
-                                                    <option value="0">
-                                                    <option value="5">
-                                                    <option value="10">
-                                                    <option value="15">
-                                                    <option value="20">
-                                                    <option value="25">
-                                                </datalist>
-                                            </td>
-                                        </div>
-                                        <td>
-                                            Pourcentage javascript
-                                        </td>
-                                    </tr>
-                                </table>
+                        </form>
+                    </div>
+                </div>
+                <form method="post" action="traitement">
+                    <div class="row">
+                        <div class="col-md-6">
+
+                            <div class="form-group">
+                                <label for="category">Catégorie</label>
+                                <select name="category" id="category" class="form-control">
+
+                                    {% for category in categories %}
+
+                                        <option value="{{ category.id }}"> {{ category.name }}</option>
+
+                                    {% endfor %}
+                                </select>
                             </div>
                         </div>
+
+                    </div>
+
+
+                    <hr>
+
+                    <section class="faisability">
+
                         <div class="row">
-                            <div class="col-md-offset-6 col-md-6">
-                                <div class="buttonsubmit2">
-                                    <input name="validation" type="hidden" value="">
-                                    <input type="submit" value="Valider"/>
+                            <div class="col-md-4 cadeaux">
+                                <div class="panel panel-default">
+                                    <div class="panel-heading"><h1>Liste des cadeaux</h1></div>
+                                    <div class="panel-body">
+                                        <ol>
+                                            {% for wish in wishlist %}
+
+                                                <li class="
+                                            {% if wish.id != gift.id %}
+                                                {% if wish.treated == true and wish.feasibility >= 50 %}
+                                                    green
+                                                {% elseif wish.treated == true and wish.feasibility < 50 %}
+                                                    red
+                                                {% else %}
+                                                    grey
+                                                {% endif %}
+                                            {% else %}
+                                                blue
+                                            {% endif %}
+                                        ">{{ wish.name }} - {{ wish.feasibility }} %
+                                                </li>
+
+                                            {% endfor %}
+                                        </ol>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-8 faisability">
+                                <div class="panel panel-default">
+                                    <div class="panel-heading"><h1> Faisabilité</h1>
+
+                                    </div>
+                                    <div class="panel-body">
+                                        <table classe="table">
+                                            <tr>
+                                                <th>Sage</th>
+                                                <th>Réalisable</th>
+                                            </tr>
+                                            <tr>
+
+                                                <td>
+
+                                                    {% if gift.child.wise == 1 %}
+                                                        Peu sage <br/>5 points
+                                                    {% elseif gift.child.wise == 2 %}
+                                                        Assez sage <br/>10 points
+                                                    {% elseif gift.child.wise == 3 %}
+                                                        Sage <br/>15 points
+                                                    {% elseif gift.child.wise == 4 %}
+                                                        Très sage <br/>20 points
+                                                    {% else %}
+                                                        Petit Ange <br/>25 points
+                                                    {% endif %}
+                                                </td>
+                                                <td>
+                                                    <input type="checkbox" name="feasible" value="feasible" id="feasible" onclick='fnote()'>
+                                                    <label for="feasible">Oui</label>
+                                                    <div id="feasibleW">0 point</div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th>Note instinctive</th>
+                                                <th>Résultat</th>
+                                            </tr>
+                                            <tr>
+                                                <td><input type="range" min="-0" max="25" value="0" step="1" name="notation" id="notation"
+                                                                     list="powers"
+                                                           onclick='fnote()'>
+                                                    <datalist id="powers">
+                                                        <option value="0">
+                                                        <option value="5">
+                                                        <option value="10">
+                                                        <option value="15">
+                                                        <option value="20">
+                                                        <option value="25">
+                                                    </datalist>
+                                                    <div id="notationW">0 points</div>
+                                                </td>
+                                                <td>
+                                                    <div id="result">{{ gift.child.wise * 5 }} point</div>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-offset-6 col-md-6">
+                                        <div class="buttonsubmit2">
+                                            <input name="id" type="hidden" value="{{ gift.id }}">
+                                            <input type="hidden" id="wiseNote" value="{{ gift.child.wise }}">
+                                            <input type="submit" value="Valider"/>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </form>
+                    </section>
+                </form>
+            </div>
+        {% else %}
+            <div class="container listevide">
+            <div id="snow">
+
+                    <h1>La liste des cadeaux est vide !</h1>
+                </div>
+                <div class="contents">
+                    <div class="layer-6"></div>
+                    <div class="layer-5"></div>
+                    <div class="layer-4"></div>
+                    <div class="layer-3"></div>
+                    <div class="layer-2"></div>
+                    <div class="santa"></div>
+                    <div class="layer-1"></div>
                 </div>
             </div>
-        </div>
-    </section>
+        {% endif %}
+    {% endif %}
 {% endblock %}
 
 
+{% block script %}
+    <script type='text/javascript' src='{{ asset('assets/js/js.js') }}'></script>
+{% endblock script %}

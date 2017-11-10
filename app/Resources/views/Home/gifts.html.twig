@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+{% block title %}Ma liste{% endblock %}
+{% block navbar %}
+{% endblock %}
+{% block body %}
+    <div class="container">
+        {% if errorMessage %}
+            <div class="alert alert-danger">
+                {{ errorMessage }}
+            </div>
+            {% endif %}
+        <div class="col-xs-offset-2 col-xs-8 panel-body">
+            <h1>Ajoute ton cadeau</h1>
+            {% form_theme form 'bootstrap_3_layout.html.twig' %}
+            {{ form_start(form) }}
+            {{ form_widget(form) }}
+            {{ form_end(form) }}
+        </div>
+        {% if child.gifts %}
+        <div class="col-xs-offset-2 col-xs-8 panel-body">
+            <h2>Ajoute ton cadeau</h2>
+            <ul>
+            {% for gift in child.gifts %}
+                <li>{{ gift.name }}</li>
+            {% endfor %}
+            </ul>
+        </div>
+        {% endif %}
+    </div>
+{% endblock %}
