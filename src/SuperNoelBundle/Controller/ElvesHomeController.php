@@ -4,13 +4,13 @@ namespace SuperNoelBundle\Controller;
 
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use SuperNoelBundle\Entity\Category;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 /**
  * Class ElveHomeController
  * @route("/elfes")
  */
-class ElvesHomeController extends Controller
+class ElvesHomeController extends AbstractController
 {
     const Malus = 4;
 
@@ -50,6 +50,7 @@ class ElvesHomeController extends Controller
         } else {
             $gifts = null;
             $wishlist = null;
+            $categories = null;
         }
 
         return $this->render('Elves/index.html.twig',  [
@@ -64,10 +65,11 @@ class ElvesHomeController extends Controller
      */
     public function giftTreatementAction()
     {
+
         // Connection Manager
         $em = $this->getDoctrine()->getManager();
 
-        if (empty($_POST['id'])) {
+        if (!empty($_POST['id'])) {
 
             // Récupérer l'objet Gift en cours de traitement
             $gift = $em->getRepository('SuperNoelBundle:Gift')
@@ -75,7 +77,7 @@ class ElvesHomeController extends Controller
 
             // Faisabilité
             $feasibility = $_POST['notation'] + (5 * $gift->getChild()->getWise());
-            if ($_POST['feasible'] == true){
+            if (isset($_POST['feasible']) && $_POST['feasible'] == true){
                 $feasibility += 50;
             }
 
@@ -112,8 +114,7 @@ class ElvesHomeController extends Controller
             $em->flush();
         }
 
-//        return $this->redirectToRoute('homepage');
-        return $this->render('Elves/index.html.twig');
+        return $this->elvesAction();
     }
 }
 
