@@ -2,10 +2,6 @@
 /*page d'accueil*/
 @import url('https://fonts.googleapis.com/css?family=Gloria+Hallelujah');
 
-
-.panel-body {
-    width: 60%;
-}
 .titlefields {
     font-family: 'Gloria Hallelujah', cursive;
 }
@@ -13,13 +9,18 @@
 /*fin page d'accueil*/
 
 /*page elfes*/
+.giftlist {
+    padding-top: 70px;
+    color: darkblue;
+}
+
+
 .cookies {
     width: 60px;
     height: auto;
 }
 
 .namechild {
-
     padding-bottom: 25px;
 }
 
@@ -27,13 +28,11 @@
 .table {
     border: medium solid #6495ed;
     border-collapse: collapse;
-
 }
 
 div.panel-body>table {
     display: flex;
     justify-content: center;
-
 }
 
 div.panel-body.wish, div.panel-body.board {
@@ -47,8 +46,8 @@ th {
     width: 50%;
     padding: 5px;
     background-color: #D0E3FA;
-
 }
+
 td {
     font-family: sans-serif;
     border: thin solid #6495ed;
@@ -120,7 +119,27 @@ td {
 
 .blue {
     color: blue;
+    Font-Weight: bold;
 }
+
+.lienV {
+    color: darkblue;
+    width: 50%;
+    margin: auto;
+    text-align: center;
+}
+
+.bold {
+    Font-Weight: bold;
+}
+
+.info {
+    text-align: center;
+    margin: auto;
+    color: darkblue;
+}
+
+/*fin page elfes*/
 
 
 #snow{
@@ -138,21 +157,25 @@ td {
     -ms-animation: snow 10s linear infinite;
     animation: snow 10s linear infinite;
 }
+
 @keyframes snow {
     0% {background-position: 0px 0px, 0px 0px, 0px 0px;}
     50% {background-position: 500px 500px, 100px 200px, -100px 150px;}
     100% {background-position: 500px 1000px, 200px 400px, -100px 300px;}
 }
+
 @-moz-keyframes snow {
     0% {background-position: 0px 0px, 0px 0px, 0px 0px;}
     50% {background-position: 500px 500px, 100px 200px, -100px 150px;}
     100% {background-position: 400px 1000px, 200px 400px, 100px 300px;}
 }
+
 @-webkit-keyframes snow {
     0% {background-position: 0px 0px, 0px 0px, 0px 0px;}
     50% {background-position: 500px 500px, 100px 200px, -100px 150px;}
     100% {background-position: 500px 1000px, 200px 400px, -100px 300px;}
 }
+
 @-ms-keyframes snow {
     0% {background-position: 0px 0px, 0px 0px, 0px 0px;}
     50% {background-position: 500px 500px, 100px 200px, -100px 150px;}
@@ -181,6 +204,7 @@ div#snow>h1 {
     0%   { background-position: 1000px 100%; }
     100% { background-position: 0 100%; }
 }
+
 @keyframes animation_santa {
     0%   { background-position: -300px 100%; }
     100% { background-position: 2000px 100%; }
@@ -233,19 +257,19 @@ div.buttonsubmit1 {
     padding-left: 195px;
 }
 
-
-
 /* santa page */
 
 .bg-santa {
-    background-image: url('/assets/images/snow-red.jpg');
-    background-size: cover;
-    background-repeat: no-repeat;
+    background-image: url('../images/WhiteChristmasPattern.jpg');
+    background-repeat: repeat;
     min-height: 100vh;
+    color: whitesmoke;
+    padding-top: 50px;
 }
 
 .bg-santa-box {
-    background-color: rgba(255, 255, 255, 1);
+    background-color: rgba(0, 0, 0, 0.9);
     width: 65%;
     margin: 0 auto;
+    border-radius: 8px;
 }

@@ -48,9 +48,9 @@ class childsFormType extends AbstractType
                 'label' => "Pays" ,
                 'attr' => array('class' => 'titlefields')
             ))
-            ->add('wise',   RatingType::class, array(
-                'label' => 'As-tu été sage ?',
-                'attr' => array('class' => 'titlefields')
+            ->add('wise',    TextType::class, array(
+                'label' => "Sagesse" ,
+                'attr' => array('class' => 'titlefields', 'placeholder' => 'Mettez une note de 1 à 5')
             ))
             ->add('message',    TextareaType::class, array(
                 'label' => "Message" ,

@@ -4,6 +4,8 @@ namespace SuperNoelBundle\Controller;
 
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use SuperNoelBundle\Entity\Category;
+use SuperNoelBundle\Entity\Gift;
+use SuperNoelBundle\Entity\Child;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 /**
@@ -38,9 +40,12 @@ class ElvesHomeController extends AbstractController
 
             // Rajouter Malus
             $malus = 0;
-            foreach ($wishlist as $whish) {
-                $whish->setFeasibility($whish->getFeasibility() - $malus);
+            foreach ($wishlist as $wish) {
+                $wish->setFeasibility($wish->getFeasibility() - $malus);
                 $malus += self::Malus;
+                if ($wish->getFeasibility() < 0) {
+                    $wish->setFeasibility(0);
+                }
             }
 
             // Récupérer les catégories
@@ -65,7 +70,6 @@ class ElvesHomeController extends AbstractController
      */
     public function giftTreatementAction()
     {
-
         // Connection Manager
         $em = $this->getDoctrine()->getManager();
 
@@ -75,6 +79,8 @@ class ElvesHomeController extends AbstractController
             $gift = $em->getRepository('SuperNoelBundle:Gift')
                 ->findOneById($_POST['id']);
 
+            $idChild = $gift->getChild()->getId();
+
             // Faisabilité
             $feasibility = $_POST['notation'] + (5 * $gift->getChild()->getWise());
             if (isset($_POST['feasible']) && $_POST['feasible'] == true){
@@ -82,16 +88,20 @@ class ElvesHomeController extends AbstractController
             }
 
             // Modif cadeau en cours
-//            $gift->setCategory($_POST['category']); // Blocage BDD
+            $objCat = $em->getRepository('SuperNoelBundle:Category')
+                ->find($_POST['category']);
+            $gift->setCategory($objCat);
             $gift->setFeasibility($feasibility);
             $gift->setTreated(true);
+            $em->flush();
 
-            // Activation du Malus si dernier cadeau de la liste de l'enfants
+           // Si tout les cadeaux ont été traités
             $wishlist = $em->getRepository('SuperNoelBundle:Gift')
                 ->findBy(['child' => $gift->getChild()->getId(), 'treated' => false]);
 
             if (empty($wishlist)) {
 
+                // Activation du Malus si dernier cadeau de la liste de l'enfants
                 $wishlist = $em->getRepository('SuperNoelBundle:Gift')
                     ->findBy(['child' => $gift->getChild()->getId()]);
 
@@ -100,7 +110,39 @@ class ElvesHomeController extends AbstractController
                     $whish->setFeasibility($whish->getFeasibility() - $malus);
                     $malus += self::Malus;
                 }
+                $em->flush();
 
+                // Cadeau bonus pour ceux qui n'en ont pas eu
+                $validGift = $em->getRepository('SuperNoelBundle:Gift')
+                    ->findBy(['child' => $idChild]);
+
+                $surpiseGift = true;
+                foreach ($validGift as $verification) {
+
+                    // Remettre à 0 minimum
+                    if ($verification->getFeasibility() < 0) {
+                        $verification->setFeasibility(0);
+                    }
+
+                    // S'il y a un cadeau
+                    if ($verification->getFeasibility() >= 50) {
+                        $surpiseGift = false;
+                    }
+                }
+
+                if ($surpiseGift == true) {
+                    $bonusGift = new Gift();
+                    $bonusGift->setName('Cadeau surprise');
+                    $bonusGift->setFeasibility(50);
+                    $bonusGift->setTreated(true);
+                    $objCat = $em->getRepository('SuperNoelBundle:Category')
+                        ->find(14);
+                    $bonusGift->setCategory($objCat);
+                    $objChild = $em->getRepository('SuperNoelBundle:Child')
+                        ->find($idChild);
+                    $bonusGift->setChild($objChild);
+                    $em->persist($bonusGift);
+                }
             }
 
             // Fin
@@ -115,6 +157,48 @@ class ElvesHomeController extends AbstractController
         }
 
         return $this->elvesAction();
+//        return $this->render('Elves/index.html.twig'); // A enlever apres les test
+
+    }
+
+    /**
+     * @Route("/liste")
+     */
+    public function listChildren()
+    {
+        // Connection Manager
+        $em = $this->getDoctrine()->getManager();
+
+        $children = $em->getRepository('SuperNoelBundle:Child')
+            ->findAll();
+
+        return $this->render('Elves/liste.html.twig',  [
+            'children' => $children,
+        ]);
+    }
+
+    /**
+     * @Route("/listeCadeaux")
+     */
+    public function listGiftsChildren()
+    {
+        // Connection Manager
+        $em = $this->getDoctrine()->getManager();
+
+        if (!empty($_GET['id'])) {
+
+            $gifts = $em->getRepository('SuperNoelBundle:Gift')
+                ->findBy(['child' => $_GET['id']], ['feasibility' => 'DESC']);
+
+            $child = $em->getRepository('SuperNoelBundle:Child')
+                ->find($_GET['id']);
+
+            return $this->render('Elves/liste.html.twig',  [
+                'gifts' => $gifts,
+                'child' => $child,
+            ]);
+
+        }
     }
 }
 

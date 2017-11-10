@@ -1,1 +1,21 @@
 {% extends 'base.html.twig' %}
+{% block body %}
+    <div class="container-fluid bg-santa">
+        <header class="bg-santa-box">
+            <h1 class="text-center">Liste des enfants</h1>
+        </header>
+        <div class="bg-santa-box">
+            <ul style="list-style-type: none; margin-top: 20px; padding-top: 15px; padding-bottom: 5px;">
+                {% for child in childs %}
+                    <li>
+                        <a href="/pere-noel/enfant/{{ child.id }}">{{ child.firstname }} {{ child.lastname }}</a><br>
+                        <address>
+                            {{ child.adressnumber }} {{ child.adressstreet }}<br>
+                            {{ child.adresscity }} {{ child.adresspostal ?? "" }}
+                        </address>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+{% endblock %}

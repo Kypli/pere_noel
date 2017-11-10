@@ -38,9 +38,9 @@
                                 <select name="category" id="category" class="form-control">
 
                                     {% for category in categories %}
-
-                                        <option value="{{ category.id }}"> {{ category.name }}</option>
-
+                                        {% if category.name != 'Cadeau surprise' %}
+                                            <option value="{{ category.id }}"> {{ category.name }}</option>
+                                        {% endif %}
                                     {% endfor %}
                                 </select>
                             </div>
@@ -93,9 +93,7 @@
                                                 <th>Réalisable</th>
                                             </tr>
                                             <tr>
-
                                                 <td>
-
                                                     {% if gift.child.wise == 1 %}
                                                         Peu sage <br/>5 points
                                                     {% elseif gift.child.wise == 2 %}
@@ -152,12 +150,11 @@
                         </div>
                     </section>
                 </form>
-
+                <a href="liste" class="lienV"><button type="button" class="btn btn-info info">Aller sur la liste des enfants</button></a>
             </div>
         {% else %}
             <div class="container listevide">
             <div id="snow">
-
                     <h1>La liste des cadeaux est vide !</h1>
                 </div>
                 <div class="contents">
@@ -172,6 +169,7 @@
             </div>
         {% endif %}
     {% endif %}
+
 {% endblock %}
 
 
