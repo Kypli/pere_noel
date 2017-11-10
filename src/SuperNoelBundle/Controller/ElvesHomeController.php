@@ -94,6 +94,7 @@ class ElvesHomeController extends AbstractController
             $gift->setFeasibility($feasibility);
             $gift->setTreated(true);
             $em->flush();
+
            // Si tout les cadeaux ont été traités
             $wishlist = $em->getRepository('SuperNoelBundle:Gift')
                 ->findBy(['child' => $gift->getChild()->getId(), 'treated' => false]);
@@ -109,12 +110,27 @@ class ElvesHomeController extends AbstractController
                     $whish->setFeasibility($whish->getFeasibility() - $malus);
                     $malus += self::Malus;
                 }
+                $em->flush();
 
                 // Cadeau bonus pour ceux qui n'en ont pas eu
                 $validGift = $em->getRepository('SuperNoelBundle:Gift')
-                    ->findBy(['child' => $idChild, 'feasibility' => '>= 50']);
+                    ->findBy(['child' => $idChild]);
 
-                if (empty($validGift)) {
+                $surpiseGift = true;
+                foreach ($validGift as $verification) {
+
+                    // Remettre à 0 minimum
+                    if ($verification->getFeasibility() < 0) {
+                        $verification->setFeasibility(0);
+                    }
+
+                    // S'il y a un cadeau
+                    if ($verification->getFeasibility() >= 50) {
+                        $surpiseGift = false;
+                    }
+                }
+
+                if ($surpiseGift == true) {
                     $bonusGift = new Gift();
                     $bonusGift->setName('Cadeau surprise');
                     $bonusGift->setFeasibility(50);
@@ -141,6 +157,7 @@ class ElvesHomeController extends AbstractController
         }
 
         return $this->elvesAction();
+//        return $this->render('Elves/index.html.twig'); // A enlever apres les test
 
     }
 

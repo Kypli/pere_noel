@@ -20,18 +20,18 @@ function fnote()
 
     // Affiche le résultat
     if (note == 0) {
-        document.getElementById('result').className = "red";
-        document.getElementById('result').innerHTML = note + "point";
+        document.getElementById('result').className = "red bold";
+        document.getElementById('result').innerHTML = note + " point";
     }
 
     if (note < 50 && note != 0) {
-        document.getElementById('result').className = "red";
-        document.getElementById('result').innerHTML = note + "points";
+        document.getElementById('result').className = "red bold";
+        document.getElementById('result').innerHTML = note + " points";
     }
 
     if (note >= 50) {
-        document.getElementById('result').innerHTML = note + "points";
-        document.getElementById('result').className = "green";
+        document.getElementById('result').innerHTML = note + " points";
+        document.getElementById('result').className = "green bold";
     }
 }
 

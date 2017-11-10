@@ -68,10 +68,15 @@ td {
 
 .blue {
     color: blue;
+    Font-Weight: bold;
 }
 
 .lienV {
     color: greenyellow;
+}
+
+.bold {
+    Font-Weight: bold;
 }
 /*fin page elfes*/
 
