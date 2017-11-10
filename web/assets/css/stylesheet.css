@@ -9,11 +9,11 @@
 /*fin page d'accueil*/
 
 /*page elfes*/
+
 .giftlist {
     padding-top: 70px;
     color: darkblue;
 }
-
 
 .cookies {
     width: 60px;
@@ -76,8 +76,10 @@ td {
 
 .jumbotron {
     margin-bottom: 0px;
+    background: rgba(254, 23, 53, 0.5);
     background-image: url('/assets/images/fondjumbo3.jpg');
     background-size: cover;
+
 }
 .panel-accueil {
     width: 60%;
@@ -85,8 +87,9 @@ td {
 .control-label {
     font-family: 'Gloria Hallelujah', cursive;
     margin-top: 20px;
-    color: black;
+    color: #9D1EFE;
     font-size: 20px;
+    font-weight: bold;
 }
 
 .home-message {
@@ -99,9 +102,6 @@ td {
     font-size: 25px;
     font-family: 'Gloria Hallelujah', cursive;
     color: white;
-}
-.titlefields {
-    mar
 }
 
 /*fin page d'accueil*/
