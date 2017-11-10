@@ -81,15 +81,22 @@ td {
     background-size: cover;
 
 }
+
+.test{
+    background-image: url('/assets/images/fondjumbo3.jpg');
+    background-size: cover;
+}
+
 .panel-accueil {
     width: 60%;
 }
 .control-label {
     font-family: 'Gloria Hallelujah', cursive;
     margin-top: 20px;
-    color: #9D1EFE;
+    color: white;
     font-size: 20px;
     font-weight: bold;
+    background-color: rgba(254, 23, 53, 0.4);
 }
 
 .home-message {
