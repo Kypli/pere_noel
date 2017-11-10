@@ -47,9 +47,20 @@ td {
     background-color: #ffffff;
 }
 
+/*fin page elfes*/
+
+/*page d'accueil*/
+@import url('https://fonts.googleapis.com/css?family=Gloria+Hallelujah');
+
+
 .panel-body {
     width: 60%;
 }
+.titlefields {
+    font-family: 'Gloria Hallelujah', cursive;
+}
+
+/*fin page d'accueil*/
 
 .red {
     color: red;
