@@ -80,13 +80,6 @@ class Child
     /**
      * @var string
      *
-     * @ORM\Column(name="timezone", type="string", length=255)
-     */
-    private $timezone;
-
-    /**
-     * @var string
-     *
      * @ORM\Column(name="message", type="text")
      */
     private $message;
@@ -312,30 +305,6 @@ class Child
     public function getAdresspostal()
     {
         return $this->adresspostal;
-    }
-
-    /**
-     * Set timezone
-     *
-     * @param string $timezone
-     *
-     * @return Child
-     */
-    public function setTimezone($timezone)
-    {
-        $this->timezone = $timezone;
-
-        return $this;
-    }
-
-    /**
-     * Get timezone
-     *
-     * @return string
-     */
-    public function getTimezone()
-    {
-        return $this->timezone;
     }
 
     /**

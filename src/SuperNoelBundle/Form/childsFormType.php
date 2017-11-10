@@ -15,17 +15,51 @@ class childsFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('firstname',         TextType::class)
-            ->add('lastname',    TextType::class)
-            ->add('mail',    TextType::class)
-            ->add('adressnumber',    TextType::class)
-            ->add('adressstreet',    TextType::class)
-            ->add('adresscity',    TextType::class)
-            ->add('adresscountry',    TextType::class)
-            ->add('adresspostal',    TextType::class)
-            ->add('message',    TextareaType::class)
-            ->add('wise',    TextType::class)
-            ->add('save',         SubmitType::class)
+            ->add('firstname',         TextType::class, array(
+                'label' => "Prenom" ,
+                'attr' => array('class' => 'titlefields')
+            ))
+            ->add('lastname',    TextType::class, array(
+                'label' => "Nom" ,
+                'attr' => array('class' => 'titlefields')
+            ))
+            ->add('mail',    TextType::class, array(
+                'label' => "Mail" ,
+                'attr' => array('class' => 'titlefields')
+            ))
+            ->add('adressnumber',    TextType::class, array(
+                'label' => "Numéro de rue" ,
+                'attr' => array('class' => 'titlefields')
+            ))
+            ->add('adressstreet',    TextType::class, array(
+                'label' => "Adresse" ,
+                'attr' => array('class' => 'titlefields')
+            ))
+            ->add('adresspostal',    TextType::class, array(
+                'label' => "Code postal" ,
+                'attr' => array('class' => 'titlefields')
+            ))
+            ->add('adresscity',    TextType::class, array(
+                'label' => "Ville" ,
+                'attr' => array('class' => 'titlefields')
+            ))
+            ->add('adresscountry',    TextType::class, array(
+                'label' => "Pays" ,
+                'attr' => array('class' => 'titlefields')
+            ))
+            ->add('wise',    TextType::class, array(
+                'label' => "Sagesse" ,
+                'attr' => array('class' => 'titlefields')
+            ))
+            ->add('message',    TextareaType::class, array(
+                'label' => "Message" ,
+                'attr' => array('class' => 'titlefields', 'cols' => '20', 'rows' => '15')
+
+            ))
+            ->add('envoyer',         SubmitType::class, array(
+                'label' => "Envoyer" ,
+                'attr' => array('class' => 'glyphicon glyphicon-envelope btn btn-success')
+            ))
         ;
     }
 

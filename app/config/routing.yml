@@ -5,3 +5,6 @@ super_noel:
 app:
     resource: '@AppBundle/Controller/'
     type: annotation
+enfant_route:
+    path: /enfant/{childId}
+    defaults: { _controller: SuperNoelBundle:Home:gift }

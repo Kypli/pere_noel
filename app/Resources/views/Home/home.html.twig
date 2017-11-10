@@ -1,8 +1,18 @@
 {% extends 'base.html.twig' %}
-{% block title %}titre{% endblock %}
+{% block title %}Accueil{% endblock %}
 {% block navbar %}
 {% endblock %}
 {% block body %}
-    {{ form(form) }}
+    <div class="container">
+        <div class="col-xs-offset-2 col-xs-8 panel-body">
+            <legend>Remplis ta liste de souhaits</legend>
+            {% form_theme form 'bootstrap_3_layout.html.twig' %}
+            {{ form_start(form) }}
+            {{ form_label(form.firstname) }}
+            {{ form_widget(form.firstname) }}
+            {{ form_errors(form.firstname) }}
+            {{ form_end(form) }}
+        </div>
+    </div>
 {% endblock %}
 
