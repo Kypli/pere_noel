@@ -5,8 +5,8 @@ namespace SuperNoelBundle\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use SuperNoelBundle\Entity\Child;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
-use Symfony\Component\Form\Extension\Core\Type\RadioType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
 /**
@@ -16,13 +16,13 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 class SantaClausHomeController extends Controller
 {
     /**
-     * @Route("/")
+     * @Route("/", name="santa_claus")
      */
     public function santaClausAction()
     {
         $em = $this->getDoctrine()->getManager();
 
-        $treatedChilds = $em->getRepository('SuperNoelBundle:Child')
+        $childs = $em->getRepository('SuperNoelBundle:Child')
             ->findBy(
                 ['delivered' => false],
                 [
@@ -36,15 +36,15 @@ class SantaClausHomeController extends Controller
         return $this->render(
             'SantaClaus/index.html.twig',
             [
-                'treatedChilds' => $treatedChilds
+                'childs' => $childs
             ]
         );
     }
 
     /**
-     * @Route("/enfant/{id}")
+     * @Route("/enfant/{id}", name="santa_claus_view"))
      */
-    public function viewChildAction(Child $child)
+    public function viewChildAction(Request $request, Child $child)
     {
         $em = $this->getDoctrine()->getManager();
 
@@ -63,7 +63,14 @@ class SantaClausHomeController extends Controller
 
         $form = $formBuilder->getForm();
 
-//        var_dump($child);
+        $form->handleRequest( $request );
+        if ($form->isSubmitted() && $form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($child);
+            $em->flush();
+
+            return $this->redirectToRoute('santa_claus');
+        }
 
         return $this->render(
             'SantaClaus/viewChild.html.twig',
