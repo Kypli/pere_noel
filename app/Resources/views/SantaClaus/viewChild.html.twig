@@ -1,0 +1,57 @@
+{% extends 'base.html.twig' %}
+{% block stylesheets %}
+    <link rel="stylesheet" type="text/css" href="{{ asset('bundles/starrating/css/rating.css') }}"/>
+{% endblock %}
+{% block body %}
+    <div class="container-fluid bg-santa">
+        <header class="bg-santa-box">
+            <h1 class="text-center">Cadeaux de {{ child.firstname }} {{ child.lastname }}</h1>
+        </header>
+        <div class="row bg-santa-box">
+            {% if child.message %}
+                <div class="col-md-12">
+                    <h2>
+                        <small>Lettre à votre attention</small>
+                    </h2>
+                    <blockquote>
+                        <p>{{ child.message }}</p>
+                    </blockquote>
+                </div>
+            {% endif %}
+        </div>
+        <div class="row bg-santa-box">
+            <div class="col-sm-1">Adresse:</div>
+            <div class="col-sm-11">
+                <address>
+                    {{ child.adressnumber }} {{ child.adressstreet }}<br>
+                    {{ child.adresscity }} {{ child.adresspostal ?? "" }}
+                </address>
+            </div>
+        </div>
+        <div class="row bg-santa-box">
+            <div class="col-sm-1">Sagesse:</div>
+            <div class="col-sm-11">{{ child.wise|rating(5, "fa-lg") }}</div>
+        </div>
+        <div class="row bg-santa-box">
+            <div class="col-md-12">
+                <h2>
+                    <small>Cadeau(x)</small>
+                </h2>
+                <ul class="list-unstyled">
+                    {% for gift in child.gifts %}
+                        <li>{{ gift.name }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+        <div class="row bg-santa-box">
+            <div class="col-sm-12">
+                <h2><small>Livraison effectuée?</small></h2>
+                {% form_theme deliveredForm 'bootstrap_3_horizontal_layout.html.twig' %}
+                {{ form_start(deliveredForm) }}
+                {{ form_widget(deliveredForm) }}
+                {{ form_end(deliveredForm) }}
+            </div>
+        </div>
+    </div>
+{% endblock %}

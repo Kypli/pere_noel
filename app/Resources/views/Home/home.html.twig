@@ -1,8 +1,20 @@
 {% extends 'base.html.twig' %}
-{% block title %}titre{% endblock %}
+{% block title %}Accueil{% endblock %}
 {% block navbar %}
 {% endblock %}
 {% block body %}
-{{ form(form) }}
+<div class="jumbotron">
+    <h1 class="supernoel" >SuperNoel</h1>
+</div>
+
+<div class="container">
+    <div class="col-xs-offset-2 col-xs-8 panel-body">
+        <legend>Dis nous qui tu es</legend>
+        {% form_theme form 'bootstrap_3_layout.html.twig' %}
+        {{ form_start(form) }}
+        {{ form_widget(form) }}
+        {{ form_end(form) }}
+    </div>
+</div>
 {% endblock %}
 

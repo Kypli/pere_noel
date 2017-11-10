@@ -44,6 +44,21 @@ td {
     background-color: #ffffff;
 }
 
+/*fin page elfes*/
+
+/*page d'accueil*/
+@import url('https://fonts.googleapis.com/css?family=Gloria+Hallelujah');
+
+
+.panel-body {
+    width: 60%;
+}
+.titlefields {
+    font-family: 'Gloria Hallelujah', cursive;
+}
+
+/*fin page d'accueil*/
+
 .red {
     color: red;
 }
@@ -58,6 +73,7 @@ td {
 .blue {
     color: blue;
 }
+/*fin page elfes*/
 
 #snow{
     background: none;
@@ -173,4 +189,17 @@ div.buttonsubmit1 {
 }
 
 
-/*fin page elfes*/
+/* santa page */
+
+.bg-santa {
+    background-image: url('/assets/images/snow-red.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    min-height: 100vh;
+}
+
+.bg-santa-box {
+    background-color: rgba(255, 255, 255, 1);
+    width: 65%;
+    margin: 0 auto;
+}
