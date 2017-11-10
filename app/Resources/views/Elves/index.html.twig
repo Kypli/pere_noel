@@ -1,8 +1,8 @@
 {% extends 'base.html.twig' %}
-
+{% block stylesheets %}
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/style.css') }}">
+{% endblock %}
 {% block body %}
-
-
     {% if gift is defined %}
         {% if gift != null %}
             <div class="container">
@@ -120,7 +120,7 @@
                                             </tr>
                                             <tr>
                                                 <td><input type="range" min="-0" max="25" value="0" step="1" name="notation" id="notation"
-                                                           list="powers"
+                                                                     list="powers"
                                                            onclick='fnote()'>
                                                     <datalist id="powers">
                                                         <option value="0">
@@ -156,7 +156,7 @@
             </div>
         {% else %}
             <div class="container listevide">
-                <div id="snow">
+            <div id="snow">
 
                     <h1>La liste des cadeaux est vide !</h1>
                 </div>
