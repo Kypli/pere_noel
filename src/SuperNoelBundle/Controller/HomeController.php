@@ -10,7 +10,9 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\HttpFoundation\Request;
 
-
+/**
+ * @Route("/")
+ */
 class HomeController extends Controller
 {
     /**
