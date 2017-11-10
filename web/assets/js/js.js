@@ -35,6 +35,7 @@ function fnote()
     }
 }
 
+
 $(document).ready(function() {
     snowFall.snow($('section'), {
         minSize: 1,
