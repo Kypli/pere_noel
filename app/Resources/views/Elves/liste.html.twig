@@ -1,16 +1,28 @@
-<p>coucou</p>
+{% extends 'base.html.twig' %}
 
-{% if children is defined %}
-    {%  for child in children %}
-        <form action="" method="post">
-            <input type="hidden" name="id" value="{{ child.id }}">
-            Nom: {{ child.firstname }}
-            <input type="submit" value="Détails">
-            <br/>
-        </form>
-    {% endfor %}
-{% endif %}
+{% block body %}
+<div class="container">
+    <div class="row">
+        <div>
+            {% if children is defined %}
+                <p>Liste des enfants</p>
+                {%  for child in children %}
+                    <a class="lienV" href="listeCadeaux?id={{ child.id }}">{{ child.firstname }}</a>
+                    <br/>
+                {% endfor %}
+            {% endif %}
 
-{% if children is not defined %}
-    Liste
-{% endif %}
+            {% if gifts is defined %}
+                <p>Liste de cadeau de {{ child.firstname  }} {{ child.lastname  }}</p>
+                {%  for gift in gifts %}
+                    {{ gift.name }} - {{ gift.feasibility }}
+                    <br/>
+                {% endfor %}
+                <p><a href="liste" class="lienV">Revenir à la liste des enfants</a></p>
+            {% endif %}
+            <p><a href="traitement" class="lienV">Revenir au traitement des cadeaux</a></p>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

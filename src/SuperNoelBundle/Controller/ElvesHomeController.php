@@ -152,23 +152,35 @@ class ElvesHomeController extends AbstractController
         // Connection Manager
         $em = $this->getDoctrine()->getManager();
 
-        if (!empty($_POST['id'])) {
+        $children = $em->getRepository('SuperNoelBundle:Child')
+            ->findAll();
+
+        return $this->render('Elves/liste.html.twig',  [
+            'children' => $children,
+        ]);
+    }
+
+    /**
+     * @Route("/listeCadeaux")
+     */
+    public function listGiftsChildren()
+    {
+        // Connection Manager
+        $em = $this->getDoctrine()->getManager();
+
+        if (!empty($_GET['id'])) {
 
             $gifts = $em->getRepository('SuperNoelBundle:Gift')
-                ->findBy(['child' => $_POST['id']]);
+                ->findBy(['child' => $_GET['id']], ['feasibility' => 'DESC']);
+
+            $child = $em->getRepository('SuperNoelBundle:Child')
+                ->find($_GET['id']);
 
             return $this->render('Elves/liste.html.twig',  [
                 'gifts' => $gifts,
+                'child' => $child,
             ]);
 
-        } else {
-
-            $children = $em->getRepository('SuperNoelBundle:Child')
-                ->findAll();
-
-            return $this->render('Elves/liste.html.twig',  [
-                'children' => $children,
-            ]);
         }
     }
 }
