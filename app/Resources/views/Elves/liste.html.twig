@@ -1,39 +1,53 @@
 {% extends 'base.html.twig' %}
-
+{% block stylesheets %}
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/style.css') }}">
+{% endblock %}
 {% block body %}
-<div class="container">
-    <div class="row">
-        <div>
-            {% if children is defined %}
-                <p>Liste des enfants</p>
-                {%  for child in children %}
-                    <a class="lienV" href="listeCadeaux?id={{ child.id }}">{{ child.firstname }}</a>
-                    <br/>
-                {% endfor %}
-            {% endif %}
-
-            {% if gifts is defined %}
-                <p>Liste de cadeau de {{ child.firstname  }} {{ child.lastname  }}</p>
-                {% if child.delivered == false %}
-                    <p>Cet enfant n'a pas été livré</p>
-                {% else %}
-                        <p>Cet enfant a été livré</p>
+    <div class="container">
+        <div class="row">
+            <div>
+                {% if children is defined %}
+                    <h1>Liste des enfants</h1>
+                    {% for child in children %}
+                        <p><a class="lienV list-group-item" href="listeCadeaux?id={{ child.id }}">{{ child.firstname }}</a></p>
+                        <br/>
+                    {% endfor %}
                 {% endif %}
-                {%  for gift in gifts %}
-                    <span class="
+
+                {% if gifts is defined %}
+                    <div class="giftlist">
+                        <div class="panel panel-default">
+                            <div class="panel-heading"><h1>Liste de cadeaux de {{ child.firstname }} {{ child.lastname }}</h1></div>
+                            <div class="panel-body">
+                                {% if child.delivered == false %}
+                                    <p>Cet enfant n'a pas été livré</p>
+                                {% else %}
+                                    <p>Cet enfant a été livré</p>
+                                {% endif %}
+                                {% for gift in gifts %}
+                                    <span class="
                         {% if gift.feasibility >= 50 %}
                             green
                         {% else %}
                             red
                         {% endif %}
-                    ">{{ gift.name }} - {{ gift.feasibility }}</span>
-                    <br/>
-                {% endfor %}
-                <p><a href="liste" class="lienV">Revenir à la liste des enfants</a></p>
-            {% endif %}
-            <p><a href="traitement" class="lienV">Revenir au traitement des cadeaux</a></p>
+                    ">{{ gift.name }} - {{ gift.feasibility }} %</span>
+                                    <br/>
+                                {% endfor %}
+                                <br>
+                            </div>
+                        </div>
+                    </div>
+
+                    <p><a href="liste" class="lienV">
+                            <button type="button" class="btn btn-info info">Revenir à la liste des enfants</button>
+                        </a></p>
+                {% endif %}
+                <p><a href="traitement" class="lienV ">
+                        <button type="button" class="btn btn-info info">Revenir au traitement des cadeaux</button>
+                    </a></p>
+            </div>
         </div>
     </div>
-</div>
 
 {% endblock %}

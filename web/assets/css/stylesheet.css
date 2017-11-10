@@ -2,9 +2,6 @@
 /*page d'accueil*/
 @import url('https://fonts.googleapis.com/css?family=Gloria+Hallelujah');
 
-.panel-body {
-    width: 60%;
-}
 .titlefields {
     font-family: 'Gloria Hallelujah', cursive;
 }
@@ -12,6 +9,11 @@
 /*fin page d'accueil*/
 
 /*page elfes*/
+.giftlist {
+    padding-top: 70px;
+    color: darkblue;
+}
+
 
 .cookies {
     width: 60px;
@@ -72,12 +74,22 @@ td {
 }
 
 .lienV {
-    color: greenyellow;
+    color: darkblue;
+    width: 50%;
+    margin: auto;
+    text-align: center;
 }
 
 .bold {
     Font-Weight: bold;
 }
+
+.info {
+    text-align: center;
+    margin: auto;
+    color: darkblue;
+}
+
 /*fin page elfes*/
 
 
